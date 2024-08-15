@@ -6,8 +6,11 @@
     "test": "cucumber-js --require src/step-definitions/**/*.js --require src/support/hooks.js --format summary src/features/**/*.feature --publish-quiet",
     "allure:generate": "npx allure generate allure-results --clean -o allure-report",
     "allure:open": "npx allure open allure-report",
-    "lint": "npx eslint .",
-    "lint:fix": "npx eslint . --fix"
+    "lint": "npx eslint --config src/config/eslint.config.js .",
+    "lint:fix": "npx eslint --config src/config/eslint.config.js . --fix",
+    "format": "prettier --write \"**/*.{ts,tsx,css,html,js}\" ",
+    "only": "cucumber-js --require src/step-definitions/**/*.js --require src/support/hooks.js --format summary src/features/**/*.feature --publish-quiet --tags @only",
+    "test:parallel": "cucumber-js --parallel=2"
   },
   "keywords": [],
   "author": "",

@@ -1,6 +1,6 @@
 // src/pages/HomePage.js
-const HomePageLocators = require("../locators/locators");
-const BasePage = require("./BasePage");
+const HomePageLocators = require('../locators/locators');
+const BasePage = require('./Base.page');
 
 class HomePage extends BasePage {
   constructor(page) {

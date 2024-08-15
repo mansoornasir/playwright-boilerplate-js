@@ -1,10 +1,7 @@
 // src/config/cucumber.config.js
-const {
-  setDefaultTimeout,
-  setWorldConstructor,
-} = require("@cucumber/cucumber");
-const path = require("path");
-const CustomWorld = require(path.resolve(__dirname, "../support/world"));
+const { setDefaultTimeout, setWorldConstructor } = require('@cucumber/cucumber');
+const path = require('path');
+const CustomWorld = require(path.resolve(__dirname, '../support/world'));
 
 // Use environment variables with default fallback values
 const TIMEOUT = process.env.CUCUMBER_TIMEOUT || 60 * 1000;
@@ -21,12 +18,12 @@ if (process.env.DEBUG) {
 }
 
 const common = [
-  "--require-module ts-node/register",
-  "--require ../features/step-definitions/**/*.js",
-  "--format progress-bar",
-  "--format @cucumber/pretty-formatter",
-  "--format json:allure-results/cucumber-report.json",
-].join(" ");
+  '--require-module ts-node/register',
+  '--require ../features/step-definitions/**/*.js',
+  '--format progress-bar',
+  '--format @cucumber/pretty-formatter',
+  '--format json:allure-results/cucumber-report.json',
+].join(' ');
 // Export configuration for Cucumber CLI
 module.exports = {
   default: common, // Add any other options if needed

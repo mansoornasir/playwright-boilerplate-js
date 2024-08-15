@@ -1,18 +1,17 @@
 // src/hooks/hooks.js
 
-require("dotenv").config(); // Load environment variables from .env file
-const { Before, After, BeforeAll, AfterAll } = require("@cucumber/cucumber");
-const { chromium } = require("playwright");
-const { getCurrentTimestamp } = require("../utils/helpers");
-require("../step-definitions/web/commonSteps");
+require('dotenv').config(); // Load environment variables from .env file
+const { Before, After, BeforeAll, AfterAll } = require('@cucumber/cucumber');
+const { chromium } = require('playwright');
+const { getCurrentTimestamp } = require('../utils/helpers');
+require('../step-definitions/web/common.steps');
 // Load configuration from environment variables
 const CONFIG = {
-  HEADLESS: process.env.HEADLESS === "true",
+  HEADLESS: process.env.HEADLESS === 'true',
   VIEWPORT_WIDTH: parseInt(process.env.VIEWPORT_WIDTH, 10) || 1280,
   VIEWPORT_HEIGHT: parseInt(process.env.VIEWPORT_HEIGHT, 10) || 720,
   PAGE_LOAD_TIMEOUT: parseInt(process.env.PAGE_LOAD_TIMEOUT, 10) || 30000,
-  ELEMENT_VISIBLE_TIMEOUT:
-    parseInt(process.env.ELEMENT_VISIBLE_TIMEOUT, 10) || 10000,
+  ELEMENT_VISIBLE_TIMEOUT: parseInt(process.env.ELEMENT_VISIBLE_TIMEOUT, 10) || 10000,
 };
 // Global state
 let browser;

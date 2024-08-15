@@ -1,0 +1,5 @@
+# Ignore artifacts:
+reports
+build
+node_modules
+allure-report

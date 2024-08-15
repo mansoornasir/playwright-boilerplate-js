@@ -1,11 +1,10 @@
 // src/helpers/helpers.js
 
-const fs = require("fs").promises;
+const fs = require('fs').promises;
 // Random Data Generation
 function generateRandomString(length) {
-  const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  let result = "";
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
   for (let i = 0; i < length; i++) {
     result += characters.charAt(Math.floor(Math.random() * characters.length));
   }
@@ -18,7 +17,7 @@ function getRandomPhoneNumber() {
   const exchangeCode = Math.floor(Math.random() * 900) + 100; // Random number between 100 and 999
   const subscriberNumber = Math.floor(Math.random() * 10000)
     .toString()
-    .padStart(4, "0"); // Random number between 0000 and 9999
+    .padStart(4, '0'); // Random number between 0000 and 9999
 
   // Format the phone number
   const phoneNumber = `(${areaCode}) ${exchangeCode}-${subscriberNumber}`;
@@ -26,9 +25,8 @@ function getRandomPhoneNumber() {
 }
 
 function getRandomUsername(length = 8) {
-  const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  let username = "";
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let username = '';
 
   for (let i = 0; i < length; i++) {
     const randomIndex = Math.floor(Math.random() * characters.length);
@@ -40,8 +38,8 @@ function getRandomUsername(length = 8) {
 
 function generateRandomPassword(length = 12) {
   const charset =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+[]{}|;:,.<>?";
-  let password = "";
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+[]{}|;:,.<>?';
+  let password = '';
 
   for (let i = 0; i < length; i++) {
     const randomIndex = Math.floor(Math.random() * charset.length);
@@ -53,7 +51,7 @@ function generateRandomPassword(length = 12) {
 
 // Date and Time Utilities
 function formatDate(date) {
-  return date.toISOString().split("T")[0];
+  return date.toISOString().split('T')[0];
 }
 
 function getCurrentTimestamp() {
@@ -86,12 +84,12 @@ async function retryOperation(operation, retries = 3, delay = 1000) {
 
 // File Management
 async function readJsonFile(filePath) {
-  const data = await fs.readFile(filePath, "utf-8");
+  const data = await fs.readFile(filePath, 'utf-8');
   return JSON.parse(data);
 }
 
 async function writeJsonFile(filePath, data) {
-  await fs.writeFile(filePath, JSON.stringify(data, null, 2), "utf-8");
+  await fs.writeFile(filePath, JSON.stringify(data, null, 2), 'utf-8');
 }
 
 // Export Functions

@@ -52,7 +52,7 @@ class BasePage {
   // Method to wait for an element to be visible
   async waitForVisible(selector, timeout = 30000) {
     try {
-      await this.page.waitForSelector(selector, { state: "visible", timeout });
+      await this.page.waitForSelector(selector, { state: 'visible', timeout });
     } catch (error) {
       console.error(`Failed to wait for ${selector} to be visible:`, error);
       throw error;
@@ -61,7 +61,7 @@ class BasePage {
 
   // Method to handle alerts
   async handleAlert() {
-    this.page.on("dialog", async (dialog) => {
+    this.page.on('dialog', async (dialog) => {
       console.log(`Alert text: ${dialog.message()}`);
       await dialog.accept();
     });
