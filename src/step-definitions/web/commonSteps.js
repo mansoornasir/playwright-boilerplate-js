@@ -312,6 +312,8 @@ Then("I take a full-page screenshot", async function () {
   await this.page.screenshot({ path: screenshotPath, fullPage: true });
 });
 
+// some chagnes
+
 // Example: Switch to a new tab (not tested yet)
 // When("I switch to the new tab", async function (selector) {
 //   const [newPage] = await Promise.all([
