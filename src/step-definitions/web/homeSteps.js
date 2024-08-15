@@ -1,4 +1,4 @@
-const { Given, Then, After, When, Before } = require("@cucumber/cucumber");
+const { Given, Then } = require("@cucumber/cucumber");
 const HomePage = require("../../pages/HomePage");
 
 Given("I am on the home page", async function () {
