@@ -65,7 +65,7 @@ typings/
 #reports
 reports/*.html
 reports/*.json
-./allure-report
+allure-report
 traces/
 
 #build
