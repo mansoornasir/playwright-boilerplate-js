@@ -1,4 +1,4 @@
-@only
+@only @smoke
 Feature: Home Page Navigation
     As a user
     I want to be able to navigate to the home page

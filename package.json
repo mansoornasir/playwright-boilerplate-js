@@ -10,6 +10,7 @@
     "lint:fix": "npx eslint --config src/config/eslint.config.js . --fix",
     "format": "prettier --write \"**/*.{ts,tsx,css,html,js}\" ",
     "only": "cucumber-js --require src/step-definitions/**/*.js --require src/support/hooks.js --format summary src/features/**/*.feature --publish-quiet --tags @only",
+    "smoke": "cucumber-js --require src/step-definitions/**/*.js --require src/support/hooks.js --format summary src/features/**/*.feature --publish-quiet --tags @smoke",
     "test:parallel": "cucumber-js --parallel=2"
   },
   "keywords": [],

@@ -1,3 +1,8 @@
+INSTALL THIS EXTENSION
+Cucumber (Gherkin) Full Support
+
+remove any other including "Cucumber.io"
+
 use: npm install -> to install dependencies.
 
 use: npm test -> to run the tests
@@ -6,7 +11,6 @@ use: npm run allure:generate -> to generate report
 
 use: npm run allure:open -> to open the report
 
-
 # Cucumber Steps Documentation
 
 ## Navigation
@@ -14,181 +18,217 @@ use: npm run allure:open -> to open the report
 ### Given
 
 - **`I navigate to {string}`**
-  - *Navigates to the specified URL using locators.*
+  - _Navigates to the specified URL using locators._
 
 ### When
 
 - **`I navigate back`**
-  - *Navigates back to the previous page.*
+
+  - _Navigates back to the previous page._
 
 - **`I navigate forward`**
-  - *Navigates forward to the next page.*
+
+  - _Navigates forward to the next page._
 
 - **`I refresh the page`**
-  - *Refreshes the current page.*
+  - _Refreshes the current page._
 
 ## Element Interactions
 
 ### When
 
 - **`I click on the {string}`**
-  - *Clicks on the specified element using locators.*
+
+  - _Clicks on the specified element using locators._
 
 - **`I double-click on the {string}`**
-  - *Double-clicks on the specified element using locators.*
+
+  - _Double-clicks on the specified element using locators._
 
 - **`I right-click on the {string}`**
-  - *Right-clicks on the specified element using locators.*
+
+  - _Right-clicks on the specified element using locators._
 
 - **`I check the {string} checkbox`**
-  - *Checks the specified checkbox using locators.*
+
+  - _Checks the specified checkbox using locators._
 
 - **`I uncheck the {string} checkbox`**
-  - *Unchecks the specified checkbox using locators.*
+
+  - _Unchecks the specified checkbox using locators._
 
 - **`I type {string} into the {string} field`**
-  - *Fills the specified form field with the given value using locators.*
+
+  - _Fills the specified form field with the given value using locators._
 
 - **`I clear the {string} field`**
-  - *Clears the specified input field using locators.*
+
+  - _Clears the specified input field using locators._
 
 - **`I fill the form with the following data:`**
-  - *Fills the form fields with data from the provided table.*
+
+  - _Fills the form fields with data from the provided table._
 
 - **`I select {string} from the {string} dropdown`**
-  - *Selects the specified option from the dropdown using locators.*
+
+  - _Selects the specified option from the dropdown using locators._
 
 - **`I hover over the {string}`**
-  - *Hovers over the specified element using locators.*
+
+  - _Hovers over the specified element using locators._
 
 - **`I scroll to the {string}`**
-  - *Scrolls to the specified element using locators.*
+  - _Scrolls to the specified element using locators._
 
 ## Assertions
 
 ### Then
 
 - **`I should see the {string} element`**
-  - *Asserts that the specified element is visible using locators.*
+
+  - _Asserts that the specified element is visible using locators._
 
 - **`The {string} should not be visible`**
-  - *Asserts that the specified element is not visible using locators.*
+
+  - _Asserts that the specified element is not visible using locators._
 
 - **`The {string} should be enabled`**
-  - *Asserts that the specified element is enabled using locators.*
+
+  - _Asserts that the specified element is enabled using locators._
 
 - **`The {string} should be disabled`**
-  - *Asserts that the specified element is disabled using locators.*
+
+  - _Asserts that the specified element is disabled using locators._
 
 - **`The {string} field should be empty`**
-  - *Asserts that the specified field is empty using locators.*
+
+  - _Asserts that the specified field is empty using locators._
 
 - **`The {string} attribute of the {string} should be {string}`**
-  - *Asserts that the specified attribute of the element has the expected value.*
+
+  - _Asserts that the specified attribute of the element has the expected value._
 
 - **`I should see the text {string} on the page`**
-  - *Asserts that the specified text is present on the page.*
+
+  - _Asserts that the specified text is present on the page._
 
 - **`I should not see the text {string} on the page`**
-  - *Asserts that the specified text is not present on the page.*
+
+  - _Asserts that the specified text is not present on the page._
 
 - **`The page title should be {string}`**
-  - *Asserts that the page title matches the expected title.*
+
+  - _Asserts that the page title matches the expected title._
 
 - **`The element {string} should contain the text {string}`**
-  - *Asserts that the specified element contains the expected text using locators.*
+
+  - _Asserts that the specified element contains the expected text using locators._
 
 - **`The URL should contain {string}`**
-  - *Asserts that the current URL contains the expected text.*
+
+  - _Asserts that the current URL contains the expected text._
 
 - **`The {string} checkbox should be checked`**
-  - *Asserts that the specified checkbox is checked using locators.*
+  - _Asserts that the specified checkbox is checked using locators._
 
 ## Keyboard Interactions
 
 ### When
 
 - **`I press the enter key on element {string}`**
-  - *Presses the Enter key on the specified element using locators.*
+
+  - _Presses the Enter key on the specified element using locators._
 
 - **`I press the escape key`**
-  - *Presses the escape key on the keyboard.*
+  - _Presses the escape key on the keyboard._
+
 ## Waiting
 
 ### When
 
 - **`I wait for {int} seconds`**
-  - *Waits for the specified duration (in seconds).*
+
+  - _Waits for the specified duration (in seconds)._
 
 - **`I wait for {int} {string} elements to be present`**
-  - *Waits for a specific number of elements to be present on the page.*
+
+  - _Waits for a specific number of elements to be present on the page._
 
 - **`I wait for the {string} attribute of the {string} to be {string}`**
-  - *Waits for the specified attribute of the element to have a specific value.*
+
+  - _Waits for the specified attribute of the element to have a specific value._
 
 - **`I wait for the {string} to contain the text {string}`**
-  - *Waits for the specified element to contain the expected text.*
+
+  - _Waits for the specified element to contain the expected text._
 
 - **`I wait for the {string} to be visible`**
-  - *Waits for the specified element to be visible using locators.*
+
+  - _Waits for the specified element to be visible using locators._
 
 - **`I wait for the {string} to disappear`**
-  - *Waits for the specified element to disappear using locators.*
+  - _Waits for the specified element to disappear using locators._
 
 ## Utility
 
 ### Then
 
 - **`I take a screenshot`**
-  - *Takes a screenshot of the current page.*
+
+  - _Takes a screenshot of the current page._
 
 - **`I take a full-page screenshot`**
-  - *Takes a full-page screenshot of the current page.*
+  - _Takes a full-page screenshot of the current page._
 
 ### When
 
 - **`I switch to the new tab`**
-  - *Switches to a new tab that was opened.*
+  - _Switches to a new tab that was opened._
 
 ## Authentication
 
 ### Given
 
 - **`I am authenticated with username {string} and password {string}`**
-  - *Authenticates with basic HTTP credentials.*
+  - _Authenticates with basic HTTP credentials._
 
 ## Files
 
 ### When
 
 - **`I upload the file {string} to the {string} input`**
-  - *Uploads a file to the specified input element using locators.*
+  - _Uploads a file to the specified input element using locators._
 
 ## Modal and Popup Handling
 
 ### When
 
 - **`I accept the alert`**
-  - *Handles and accepts an alert.*
+
+  - _Handles and accepts an alert._
 
 - **`I accept the confirmation`**
-  - *Handles and accepts a confirmation dialog.*
+
+  - _Handles and accepts a confirmation dialog._
 
 - **`I dismiss the confirmation`**
-  - *Handles and dismisses a confirmation dialog.*
+
+  - _Handles and dismisses a confirmation dialog._
 
 - **`I accept the prompt with {string}`**
-  - *Handles and accepts a prompt with the specified input.*
+
+  - _Handles and accepts a prompt with the specified input._
 
 - **`I dismiss the prompt`**
-  - *Handles and dismisses a prompt.*
+  - _Handles and dismisses a prompt._
 
 ## Advanced Steps
 
 ### When
 
 - **`I switch to the iframe {string}`**
-  - *Switches to the specified iframe.*
+
+  - _Switches to the specified iframe._
 
 - **`I switch back to the main content`**
-  - *Switches back to the main content from an iframe.*
+  - _Switches back to the main content from an iframe._
