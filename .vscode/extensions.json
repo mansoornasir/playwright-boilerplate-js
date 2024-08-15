@@ -6,10 +6,10 @@
 		"esbenp.prettier-vscode",
 		"dbaeumer.vscode-eslint",
 		"oderwat.indent-rainbow",
-		"coenraads.bracket-pair-colorizer-2",
 		"wmaurer.change-case",
 		"alexkrechik.cucumberautocomplete",
 		"oouo-diogo-perdigao.docthis",
-		"eamodio.gitlens"
+		"eamodio.gitlens",
+		"nguyenngoclong.cypress-cucumber-step-definition-generator"
 	]
 }
