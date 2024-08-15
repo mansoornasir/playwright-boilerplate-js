@@ -1,8 +1,6 @@
 // src/helpers/helpers.js
 
 const fs = require("fs").promises;
-const { expect } = require("@playwright/test");
-
 // Random Data Generation
 function generateRandomString(length) {
   const characters =

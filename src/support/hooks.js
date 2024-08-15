@@ -4,7 +4,7 @@ require("dotenv").config(); // Load environment variables from .env file
 const { Before, After, BeforeAll, AfterAll } = require("@cucumber/cucumber");
 const { chromium } = require("playwright");
 const { getCurrentTimestamp } = require("../utils/helpers");
-require("../step-definitions/commonSteps");
+require("../step-definitions/web/commonSteps");
 // Load configuration from environment variables
 const CONFIG = {
   HEADLESS: process.env.HEADLESS === "true",

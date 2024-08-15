@@ -8,7 +8,7 @@ module.exports = [
         ],
         files: ['src/**/*.js'],
         rules: {
-            'no-console': 'warn',
+            'no-console': ['warn', { allow: ['log', 'error'] }],
             'no-unused-vars': 'warn',
             'prettier/prettier': ['error'],  // Make sure this rule is defined correctly
         },

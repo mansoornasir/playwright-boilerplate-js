@@ -5,7 +5,9 @@
   "scripts": {
     "test": "cucumber-js --require src/step-definitions/**/*.js --require src/support/hooks.js --format summary src/features/**/*.feature --publish-quiet",
     "allure:generate": "npx allure generate allure-results --clean -o allure-report",
-    "allure:open": "npx allure open allure-report"
+    "allure:open": "npx allure open allure-report",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +25,8 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-prettier": "^5.2.1",
+    "husky": "^9.1.4",
+    "lint-staged": "^15.2.9",
     "prettier": "^3.3.3"
   }
 }
