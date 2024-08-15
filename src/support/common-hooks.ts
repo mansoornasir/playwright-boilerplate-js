@@ -79,7 +79,7 @@ After(async function (this: ICustomWorld, { result }: ITestCaseHookParameter) {
       const image = await this.page?.screenshot();
 
       // Replace : with _ because colons aren't allowed in Windows paths
-      const timePart = this.startTime?.toISOString().split('.')[0].replaceAll(':', '_');
+      const timePart = this.startTime?.toISOString().split('.')[0].replace(':', '_');
 
       image && (await this.attach(image, 'image/png'));
       await this.context?.tracing.stop({
