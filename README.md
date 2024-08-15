@@ -111,6 +111,8 @@ use: npm run allure:open -> to open the report
 - **`I press the enter key on element {string}`**
   - *Presses the Enter key on the specified element using locators.*
 
+- **`I press the escape key`**
+  - *Presses the escape key on the keyboard.*
 ## Waiting
 
 ### When

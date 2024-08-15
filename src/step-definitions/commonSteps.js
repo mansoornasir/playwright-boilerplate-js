@@ -161,8 +161,16 @@ Then('The {string} checkbox should be checked', async function (selector) {
 });
 
 // Keyboard Interactions
+
+// Example: I press Enter key
 When('I press the enter key on element {string}', async function (selector) {
   await this.page.press(locators[selector.split(".")[0]][selector.split(".")[1]], 'Enter');
+});
+
+// When I press Escape key
+When('I press the escape key', async function () {
+  const page = this.page; // Assuming 'page' is available in the context
+  await page.keyboard.press('Escape');
 });
 
 // Waiting 
