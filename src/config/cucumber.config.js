@@ -1,4 +1,3 @@
-// src/config/cucumber.config.js
 const { setDefaultTimeout, setWorldConstructor } = require('@cucumber/cucumber');
 const path = require('path');
 const CustomWorld = require(path.resolve(__dirname, '../support/world'));

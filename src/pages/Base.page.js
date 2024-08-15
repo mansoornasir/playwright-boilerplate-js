@@ -1,5 +1,8 @@
-// src/pages/BasePage.js
-
+/**
+ *
+ *
+ * @class BasePage
+ */
 class BasePage {
   constructor(page) {
     this.page = page;
