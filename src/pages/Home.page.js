@@ -1,6 +1,6 @@
 const HomePageLocators = require('../locators/locators');
 const BasePage = require('./Base.page');
-
+const { Given, Then } = require('@cucumber/cucumber');
 /**
  *
  *
