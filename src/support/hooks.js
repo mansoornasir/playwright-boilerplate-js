@@ -12,6 +12,8 @@ const CONFIG = {
   VIEWPORT_HEIGHT: parseInt(process.env.VIEWPORT_HEIGHT, 10) || 720,
   PAGE_LOAD_TIMEOUT: parseInt(process.env.PAGE_LOAD_TIMEOUT, 10) || 30000,
   ELEMENT_VISIBLE_TIMEOUT: parseInt(process.env.ELEMENT_VISIBLE_TIMEOUT, 10) || 10000,
+  HTTP_CRED_USERNAME: process.env.HTTP_CRED_USERNAME,
+  HTTP_CRED_PASSWORD: process.env.HTTP_CRED_PASSWORD,
 };
 // Global state
 let browser;
@@ -38,6 +40,10 @@ Before(async function () {
       width: CONFIG.VIEWPORT_WIDTH,
       height: CONFIG.VIEWPORT_HEIGHT,
     },
+    httpCredentials: {
+      username: CONFIG.HTTP_CRED_USERNAME,
+      password: CONFIG.HTTP_CRED_PASSWORD,
+    }, // Example: Set HTTP basic authentication credentials if needed
     ignoreHTTPSErrors: true, // Example: Ignore HTTPS errors if needed
   });
   this.page = await context.newPage();

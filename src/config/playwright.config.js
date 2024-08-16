@@ -2,7 +2,7 @@
 
 const { defineConfig, devices } = require('@playwright/test');
 require('dotenv').config(); // Load environment variables from .env file
-
+const credsData = require('../data/creds.json')
 const BASE_URL = process.env.BASE_URL;
 const TIMEOUT = parseInt(process.env.PAGE_LOAD_TIMEOUT, 10) || 30000;
 const RETRY = parseInt(process.env.RETRY_COUNT, 10) || 1;
@@ -27,6 +27,10 @@ module.exports = defineConfig({
     trace: 'on', // Enable tracing for debugging purposes
     video: 'on', // Capture video of test runs
     screenshot: 'on', // Capture screenshots of failed tests
+    httpCredentials: {
+      username: credsData.username,
+      password: credsData.password,
+    }
   },
   projects: [
     {

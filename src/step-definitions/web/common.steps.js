@@ -5,7 +5,7 @@ const locators = require('../../locators/locators');
 // Navigation
 
 // Example: Navigating to a URL
-Given('I navigate to {string}', async function (url) {
+Given('I navigate to {string}', {timeout:15000}, async function (url) {
   await this.page.goto(locators[url.split('.')[0]][url.split('.')[1]]);
 });
 
@@ -62,7 +62,7 @@ Then('The {string} radio button should be selected', async function (selector) {
 });
 
 // Example: Filling a form field
-When('I type {string} into the {string} field', async function (value, selector) {
+When('I type {string} into the {string} field', {timeout: 10000} ,async function (value, selector) {
   await this.page.fill(locators[selector.split('.')[0]][selector.split('.')[1]], value);
 });
 
@@ -149,8 +149,8 @@ Then(
 );
 
 // Example: Verifying text content on the page
-Then('I should see the text {string} on the page', async function (text) {
-  expect(await this.page.textContent('body')).toContain(text);
+Then('I should see the text {string} on the page', {timeout: 25000} , async function (text) {
+  expect(await this.page.textContent('li.account-nav-item.active')).toContain(text);
 });
 
 // Example: Verify text does not appear on the page
