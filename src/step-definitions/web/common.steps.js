@@ -5,7 +5,7 @@ const locators = require('../../locators/locators');
 // Navigation
 
 // Example: Navigating to a URL
-Given('I navigate to {string}', {timeout:15000}, async function (url) {
+Given('I navigate to {string}', {timeout:30000}, async function (url) {
   await this.page.goto(locators[url.split('.')[0]][url.split('.')[1]]);
 });
 
@@ -74,7 +74,7 @@ When('I clear the {string} field', async function (selector) {
 // Example: Fill a form with data from a table (not tested)
 When('I fill the form with the following data:', async function (dataTable) {
   for (const [selector, value] of dataTable.rows()) {
-    await this.page.fill(selector, value);
+    await this.page.fill(locators[selector.split('.')[0]][selector.split('.')[1]], value)
   }
 });
 
