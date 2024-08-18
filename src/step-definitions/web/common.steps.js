@@ -1,6 +1,7 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { expect } = require('@playwright/test');
 const locators = require('../../locators/locators');
+const allivetData = require('../../data/allivet-data')
 
 // Navigation
 
@@ -63,7 +64,7 @@ Then('The {string} radio button should be selected', async function (selector) {
 
 // Example: Filling a form field
 When('I type {string} into the {string} field', {timeout: 10000} ,async function (value, selector) {
-  await this.page.fill(locators[selector.split('.')[0]][selector.split('.')[1]], value);
+  await this.page.fill(locators[selector.split('.')[0]][selector.split('.')[1]], allivetData[value.split('.')[0]][value.split('.')[1]]);
 });
 
 // Example: Clear an input field
@@ -74,7 +75,7 @@ When('I clear the {string} field', async function (selector) {
 // Example: Fill a form with data from a table (not tested)
 When('I fill the form with the following data:', async function (dataTable) {
   for (const [selector, value] of dataTable.rows()) {
-    await this.page.fill(locators[selector.split('.')[0]][selector.split('.')[1]], value)
+    await this.page.type(locators[selector.split('.')[0]][selector.split('.')[1]], `${allivetData[value.split('.')[0]][value.split('.')[1]]}`)
   }
 });
 
