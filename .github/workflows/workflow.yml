@@ -25,7 +25,7 @@ jobs:
         with:
           api_key: ${{secrets.ACCES_TOKEN}}
       - name: npm ci
-        run: npm ci
+        run: npm ci --legacy-peer-deps
       - name: run lint
         run: npm run lint
       - name: install Playwright
