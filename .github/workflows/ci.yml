@@ -1,8 +1,12 @@
-name: ci
+name: Test
+
+env:
+  CI: true
+  DEBUG: pw:api
 
 on:
   push:
-    branches: [master]
+
 jobs:
   run:
     strategy:
@@ -12,39 +16,30 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
+      - name: Collect Workflow Telemetry
+        uses: runforesight/foresight-workflow-kit-action@v1
+        if: ${{ always() }}
+        with:
+          api_key: ${{secrets.GITHUB_TOKEN}}
       - name: npm ci
         run: npm ci --legacy-peer-deps
       - name: install Playwright
         run: npx playwright install --with-deps > /dev/null
-      - name: install Allure
-        run: npm install -g allure-commandline --save-dev
-      - name: run feature files
-        run: npx cucumber-js
-      - name: generate Allure reports
-        run: allure generate
-
-      - uses: actions/upload-artifact@master
+      - name: run features
+        run: npm run test
+      - name: Generate Allure report
+        run: npm run generate:allure
+      - name: Upload Allure report
+        uses: actions/upload-artifact@v3
         with:
-          name: allure-results
-          path: allure-results
-
-      - name: Test marketplace action
-        uses: simple-elf/allure-report-action@master
-        if: always()
-        id: allure-report
+          name: allure-report
+          path: allure-report/
+      - name: Deploy Allure report
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          allure_results: allure-results
-          gh_pages: gh-pages
-          allure_report: allure-report
-
-      - name: Deploy report to Github Pages
-        if: always()
-        uses: peaceiris/actions-gh-pages@v2
-        env:
-          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: ./allure-report
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./allure-report
+          publish_branch: gh-pages
