@@ -4,8 +4,9 @@
   "main": "index.js",
   "homepage": "https://mansoornasir.github.io/playwright-boilerplate-js",
   "scripts": {
+    "test2": "rimraf allure-results && rimraf allure-report && npx cucumber-js",
     "test": "rimraf allure-results && rimraf allure-report && npx cucumber-js",
-    "allure:generate": "allure generate ./allure-results --output ./allure-report",
+    "allure:generate": "allure generate",
     "allure:open": "allure open ./allure-report",
     "lint": "npx eslint .",
     "lint:fix": "npx eslint . --fix",
