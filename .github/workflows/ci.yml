@@ -26,12 +26,14 @@ jobs:
           api_key: ${{secrets.GITHUB_TOKEN}}
       - name: npm ci
         run: npm ci --legacy-peer-deps
+      - name: install allure globally
+        run: npm install -g allure-commandline --save-dev
       - name: install Playwright
         run: npx playwright install --with-deps > /dev/null
       - name: run features
         run: npm run test
       - name: Generate Allure report
-        run: npm run generate:allure
+        run: allure generate
       - name: Upload Allure report
         uses: actions/upload-artifact@v3
         with:
