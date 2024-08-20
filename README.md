@@ -11,6 +11,12 @@ use: npm run allure:generate -> to generate report
 
 use: npm run allure:open -> to open the report
 
+## Allure report is automatically deployed to the following URL (on push to master)
+
+### URL
+
+https://mansoornasir.github.io/playwright-boilerplate-js/
+
 # Cucumber Steps Documentation
 
 ## Navigation
