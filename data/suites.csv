@@ -1,4 +1,4 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
 "As a user
     I want to be able to navigate to the home page
-    So that I can access the main features of the website","402000","User navigates to the home page","","Thu Jan 01 00:07:30 UTC 1970","passed","Thu Jan 01 00:14:12 UTC 1970","","","",""
+    So that I can access the main features of the website","-460000","User navigates to the home page","","Thu Jan 01 00:13:00 UTC 1970","passed","Thu Jan 01 00:05:20 UTC 1970","","","",""
