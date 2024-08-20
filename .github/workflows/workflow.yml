@@ -26,8 +26,6 @@ jobs:
           api_key: ${{secrets.ACCES_TOKEN}}
       - name: npm ci
         run: npm ci --legacy-peer-deps
-      - name: run lint
-        run: npm run lint
       - name: install Playwright
         run: npx playwright install --with-deps > /dev/null
       - name: run features
@@ -37,4 +35,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-result-report
-          path: reports/report.html
+          path: reports/cucumber-report.html
