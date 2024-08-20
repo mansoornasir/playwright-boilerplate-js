@@ -1,1 +1,1 @@
-{"uid":"b1a8273437954620fa374b796ffaacdd","children":[],"name":"behaviors"}
+{"uid":"b1a8273437954620fa374b796ffaacdd","children":[{"name":"Home Page Navigation","children":[{"name":"User navigates to the home page","uid":"24784628a2339980","parentUid":"8195e8a7357a0b6d98cfca103ea42b15","status":"passed","time":{"start":861000,"stop":371000,"duration":-490000},"flaky":false,"newFailed":false,"newPassed":false,"newBroken":false,"retriesCount":0,"retriesStatusChange":false,"parameters":[],"tags":["@smoke","@only"]}],"uid":"8195e8a7357a0b6d98cfca103ea42b15"}],"name":"behaviors"}

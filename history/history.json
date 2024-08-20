@@ -1,1 +1,1 @@
-{}
+{"4785c32e92ab46a56f15ce241ba08a57:d41d8cd98f00b204e9800998ecf8427e":{"statistic":{"failed":0,"broken":0,"skipped":0,"passed":1,"unknown":0,"total":1},"items":[{"uid":"24784628a2339980","reportUrl":"https://mansoornasir.github.io/playwright-boilerplate-js/4//#testresult/24784628a2339980","status":"passed","time":{"start":861000,"stop":371000,"duration":-490000}}]}}
