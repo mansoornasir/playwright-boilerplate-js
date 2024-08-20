@@ -34,8 +34,6 @@ jobs:
         run: npm run test
       - name: Generate Allure report
         run: allure generate
-      - name: List directory contents
-        run: ls -R
       - name: Upload Allure report
         uses: actions/upload-artifact@v3
         with:
