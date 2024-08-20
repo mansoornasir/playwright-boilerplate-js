@@ -1,7 +1,10 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
 "As a user
     I want to be able to navigate to the home page
-    So that I can access the main features of the website","-601000","User navigates to the home page again","","Thu Jan 01 00:10:45 UTC 1970","passed","Thu Jan 01 00:00:44 UTC 1970","","","",""
+    So that I can access the main features of the website","337000","User navigates to the home page again","","Thu Jan 01 00:01:18 UTC 1970","passed","Thu Jan 01 00:06:55 UTC 1970","","","",""
 "As a user
     I want to be able to navigate to the home page
-    So that I can access the main features of the website","-213000","User navigates to the home page","","Thu Jan 01 00:14:16 UTC 1970","passed","Thu Jan 01 00:10:43 UTC 1970","","","",""
+    So that I can access the main features of the website","332000","User navigates to the home page once again","","Thu Jan 01 00:06:56 UTC 1970","passed","Thu Jan 01 00:12:28 UTC 1970","","","",""
+"As a user
+    I want to be able to navigate to the home page
+    So that I can access the main features of the website","-518000","User navigates to the home page","","Thu Jan 01 00:09:54 UTC 1970","passed","Thu Jan 01 00:01:16 UTC 1970","","","",""
