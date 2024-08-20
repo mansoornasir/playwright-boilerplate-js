@@ -2,6 +2,7 @@
   "name": "playwright-boilerplate",
   "version": "1.0.0",
   "main": "index.js",
+  "homepage": "https://mansoornasir.github.io/playwright-boilerplate-js",
   "scripts": {
     "test": "rimraf allure-results && rimraf allure-report && npx cucumber-js",
     "allure:generate": "allure generate ./allure-results --output ./allure-report",
