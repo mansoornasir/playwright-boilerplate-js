@@ -3,7 +3,7 @@ Cucumber (Gherkin) Full Support
 
 remove any other including "Cucumber.io"
 
-use: npm install -> to install dependencies.
+use: npm install or npm install --legacy-peer-deps -> to install dependencies.
 
 use: npm test -> to run the tests
 
