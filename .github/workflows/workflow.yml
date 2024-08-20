@@ -34,7 +34,7 @@ jobs:
         run: npm run test
       - name: Generate Allure report
         run: allure generate
-       - name: Checkout gh-pages branch
+      - name: Checkout gh-pages branch
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
