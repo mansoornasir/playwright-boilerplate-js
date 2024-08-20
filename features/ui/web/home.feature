@@ -12,3 +12,8 @@ Feature: Home Page Navigation
     Scenario Outline: User navigates to the home page again
         When I click on the "home.loginBtn"
         Then I should see the "home.loginBtn" element
+
+    Scenario Outline: User navigates to the home page once again
+        When I click on the "home.loginBtn"
+        Then I should see the "home.loginBtn" element
+        Then I should see the "home.loginBtn" element
