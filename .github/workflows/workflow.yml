@@ -34,6 +34,17 @@ jobs:
         run: npm run test
       - name: Generate Allure report
         run: allure generate
+      - name: Clone gh-pages branch
+        run: |
+          git clone --depth=1 --single-branch --branch gh-pages https://x-access-token:${{ secrets.ACCES_TOKEN }}@github.com/${{ github.repository }} gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCES_TOKEN }}
+
+      - name: Copy files to gh-pages branch
+        run: |
+          cp -r generated-report/* gh-pages/
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCES_TOKEN }}
       - name: Upload Allure report
         uses: actions/upload-artifact@v3
         with:
@@ -45,15 +56,7 @@ jobs:
           github_token: ${{ secrets.ACCES_TOKEN }}
           publish_dir: ./allure-report
           publish_branch: gh-pages
-      - name: Commit and push changes
-        run: |
-          git config user.name "mansoornasir"
-          git config user.email "mrmansoornasir@gmail.com"
-          git add .
-          git commit -m "Add generated report"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCES_TOKEN }}
+
       # - name: Upload test results
       #   if: always()
       #   uses: actions/upload-artifact@v3
