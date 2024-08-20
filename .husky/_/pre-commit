@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+# Exit on error
+set -e
+
+# Run eslint and capture the exit code
+npx eslint . --max-warnings=0
+
+# don't know if this will work
