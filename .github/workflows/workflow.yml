@@ -34,15 +34,17 @@ jobs:
         run: npm run test
       - name: Generate Allure report
         run: allure generate
-      - name: Clone gh-pages branch
+       - name: Checkout gh-pages branch
         run: |
-          git clone --depth=1 --single-branch --branch gh-pages https://x-access-token:${{ secrets.ACCES_TOKEN }}@github.com/${{ github.repository }} gh-pages
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git clone --depth=1 --branch=gh-pages https://x-access-token:${{ secrets.ACCES_TOKEN }}@github.com/${{ github.repository }} gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.ACCES_TOKEN }}
 
       - name: Copy files to gh-pages branch
         run: |
-          cp -r generated-report/* gh-pages/
+          cp -r allure-report/* gh-pages/
         env:
           GITHUB_TOKEN: ${{ secrets.ACCES_TOKEN }}
       - name: Upload Allure report
