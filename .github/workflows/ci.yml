@@ -23,7 +23,7 @@ jobs:
       - name: install Allure
         run: npm install -g allure-commandline --save-dev
       - name: run feature files
-        run: npm run test
+        run: npx cucumber-js
       - name: generate Allure reports
         run: allure generate
 
