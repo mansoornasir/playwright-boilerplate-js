@@ -17,7 +17,7 @@ module.exports = defineConfig({
     ['list'],
     // ['json', { outputFile: 'reports/results.json' }],
     // ['html', { outputFolder: 'reports/html-report' }],
-    ['allure-playwright', { outputFolder: 'reports/allure-report' }],
+    ['allure-playwright', { outputFolder: 'allure-results' }]
   ],
   use: {
     baseURL: BASE_URL,

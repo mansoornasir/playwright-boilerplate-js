@@ -3,8 +3,7 @@
 require('dotenv').config(); // Load environment variables from .env file
 const { Before, After, BeforeAll, AfterAll } = require('@cucumber/cucumber');
 const { chromium } = require('playwright');
-const { getCurrentTimestamp } = require('../utils/helpers');
-require('../step-definitions/web/common.steps');
+require('../step-definitions/ui/web/common.steps');
 // Load configuration from environment variables
 const CONFIG = {
   HEADLESS: process.env.HEADLESS === 'true',
@@ -19,7 +18,6 @@ let context;
 
 // Setup before all tests
 BeforeAll(async () => {
-  console.log(`[${getCurrentTimestamp()}] Starting tests...`);
   // Launch browser
   browser = await chromium.launch({
     headless: CONFIG.HEADLESS,
@@ -28,7 +26,6 @@ BeforeAll(async () => {
       height: CONFIG.VIEWPORT_HEIGHT,
     },
   });
-  console.log(`[${getCurrentTimestamp()}] Browser launched.`);
 });
 
 // Setup before each test
@@ -41,19 +38,16 @@ Before(async function () {
     ignoreHTTPSErrors: true, // Example: Ignore HTTPS errors if needed
   });
   this.page = await context.newPage();
-  console.log(`[${getCurrentTimestamp()}] New page created.`);
 });
 
 // Teardown after each test
 After(async function () {
   if (this.page) {
     await this.page.close();
-    console.log(`[${getCurrentTimestamp()}] Page closed.`);
   }
 
   if (context) {
     await context.close();
-    console.log(`[${getCurrentTimestamp()}] Context closed.`);
   }
 });
 
@@ -61,7 +55,5 @@ After(async function () {
 AfterAll(async () => {
   if (browser) {
     await browser.close();
-    console.log(`[${getCurrentTimestamp()}] Browser closed.`);
   }
-  console.log(`[${getCurrentTimestamp()}] All tests completed.`);
 });

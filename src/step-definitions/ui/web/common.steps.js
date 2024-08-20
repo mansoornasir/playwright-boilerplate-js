@@ -1,6 +1,6 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { expect } = require('@playwright/test');
-const locators = require('../../locators/locators');
+const locators = require('../../../locators/locators');
 
 // Navigation
 

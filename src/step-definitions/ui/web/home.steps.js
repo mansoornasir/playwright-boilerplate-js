@@ -1,5 +1,5 @@
 const { Given, Then } = require('@cucumber/cucumber');
-const HomePage = require('../../pages/Home.page');
+const HomePage = require('../../../pages/Home.page');
 
 Given('I am on the home page', async function () {
   homePage = new HomePage(this.page);
