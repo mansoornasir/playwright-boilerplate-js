@@ -4,21 +4,28 @@ on:
   push:
     branches: [master]
 jobs:
-  build:
+  run:
+    strategy:
+      matrix:
+        node: ['18']
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Use Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: '14'
-          cache: 'npm'
-      - run: npm ci --legacy-peer-deps
-      - run: npx playwright install --with-deps > /dev/null
-      - run: npm install -g allure-commandline --save-dev
-      - run: npm run test
-      - run: allure generate
+          node-version: ${{ matrix.node }}
+      - name: npm ci
+        run: npm ci --legacy-peer-deps
+      - name: install Playwright
+        run: npx playwright install --with-deps > /dev/null
+      - name: install Allure
+        run: npm install -g allure-commandline --save-dev
+      - name: run feature files
+        run: npm run test
+      - name: generate Allure reports
+        run: allure generate
 
       - uses: actions/upload-artifact@master
         with:
@@ -50,4 +57,4 @@ jobs:
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: allure-report
+          PUBLISH_DIR: ./allure-report
