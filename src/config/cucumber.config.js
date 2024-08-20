@@ -21,6 +21,7 @@ const common = [
   '--require ../features/step-definitions/**/*.js',
   '--format progress-bar',
   '--format @cucumber/pretty-formatter',
+  '--format ../../allure-results',
   '--format json:allure-results/cucumber-report.json',
 ].join(' ');
 // Export configuration for Cucumber CLI

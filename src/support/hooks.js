@@ -2,6 +2,7 @@
 
 require('dotenv').config(); // Load environment variables from .env file
 const { Before, After, BeforeAll, AfterAll } = require('@cucumber/cucumber');
+const { CucumberAllureWorld } = require("allure-cucumberjs")
 const { chromium } = require('playwright');
 const { getCurrentTimestamp } = require('../utils/helpers');
 require('../step-definitions/web/common.steps');
