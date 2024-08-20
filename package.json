@@ -4,8 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "rimraf allure-results && rimraf allure-report && npx cucumber-js",
-    "allure:generate": "allure generate",
-    "allure:open": "allure open",
+    "allure:generate": "allure generate ./allure-results --output ./allure-report",
+    "allure:open": "allure open ./allure-report",
     "lint": "npx eslint .",
     "lint:fix": "npx eslint . --fix",
     "format": "prettier --write \"**/*.{ts,tsx,css,html,js}\" ",
