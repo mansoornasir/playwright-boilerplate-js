@@ -39,17 +39,24 @@ jobs:
         with:
           name: allure-report
           path: allure-report/
-      - name: List directory contents
-        run: ls -R
       - name: Deploy Allure report
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.ACCES_TOKEN }}
           publish_dir: ./allure-report
           publish_branch: gh-pages
-      - name: Upload test results
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-result-report
-          path: reports/cucumber-report.html
+      - name: Commit and push changes
+        run: |
+          git config user.name "mansoornasir"
+          git config user.email "mrmansoornasir@gmail.com"
+          git add .
+          git commit -m "Add generated report"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCES_TOKEN }}
+      # - name: Upload test results
+      #   if: always()
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: test-result-report
+      #     path: reports/cucumber-report.html
