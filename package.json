@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "npx cucumber-js",
+    "test": "rimraf allure-results && rimraf allure-report && npx cucumber-js",
     "allure:generate": "allure generate",
     "allure:open": "allure open",
     "lint": "npx eslint .",
@@ -26,6 +26,7 @@
     "allure-cucumberjs": "^3.0.0-beta.10",
     "allure-js-commons": "^3.0.0-beta.10",
     "allure-playwright": "^3.0.0-beta.9",
+    "cucumber-playwright": "^1.2.1",
     "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
@@ -35,8 +36,6 @@
     "lint-staged": "^15.2.9",
     "prettier": "3.3.3",
     "prettier-eslint": "^16.3.0",
-    "rimraf": "^5.0.10",
-    "cucumber-playwright": "^1.2.1"
-  },
-  "dependencies": {}
+    "rimraf": "^5.0.10"
+  }
 }

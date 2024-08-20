@@ -1,9 +1,8 @@
+
 const common = [
   '--require ./src/step-definitions/**/*.js',        // Load step definitions
   '--require ./src/support/hooks.js',               // Load hooks
   '--format ./src/support/allure-reporter.js',      // Show a progress bar during execution
-  // '--format progress-bar',
-  '--format summary',
   './features/**/*.feature',                    // Path to your feature files
   '--publish-quiet',                                // Don't print the publishing message
 ];
