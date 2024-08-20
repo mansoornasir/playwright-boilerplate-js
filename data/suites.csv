@@ -1,4 +1,4 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Thu Jan 01 00:14:21 GMT 1970","Thu Jan 01 00:06:11 GMT 1970","-490000","","","","","","User navigates to the home page","As a user
+"passed","Thu Jan 01 00:01:21 GMT 1970","Thu Jan 01 00:09:34 GMT 1970","493000","","","","","","User navigates to the home page","As a user
     I want to be able to navigate to the home page
     So that I can access the main features of the website"
