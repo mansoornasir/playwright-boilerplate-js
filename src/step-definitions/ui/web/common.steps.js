@@ -1,13 +1,13 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { expect } = require('@playwright/test');
-const locators = require('../../../locators/locators');
 const data = require('../../../data/test-data');
+const { getSelector } = require('../../../utils/helpers');
 
 // Navigation
 
 // Example: Navigating to a URL
-Given('I navigate to {string}', async function (url) {
-  await this.page.goto(locators[url.split('.')[0]][url.split('.')[1]]);
+Given('I navigate to {string}', async function (selector) {
+  await this.page.goto(getSelector(selector));
 });
 
 // Example: Navigate back
@@ -29,50 +29,45 @@ When('I refresh the page', async function () {
 
 // Example: Clicking an element
 When('I click on the {string}', async function (selector) {
-  await this.page.click(locators[selector.split('.')[0]][selector.split('.')[1]]);
+  await this.page.click(getSelector(selector));
 });
 
 // Example: Double-click an element
 When('I double-click on the {string}', async function (selector) {
-  await this.page.dblclick(locators[selector.split('.')[0]][selector.split('.')[1]]);
+  await this.page.dblclick(getSelector(selector));
 });
 
 // Example: Right-click an element
 When('I right-click on the {string}', async function (selector) {
-  await this.page.click(locators[selector.split('.')[0]][selector.split('.')[1]], {
+  await this.page.click(getSelector(selector), {
     button: 'right',
   });
 });
 
 // Example: Check a checkbox
 When('I check the {string} checkbox', async function (selector) {
-  await this.page.check(locators[selector.split('.')[0]][selector.split('.')[1]]);
+  await this.page.check(getSelector(selector));
 });
 
 // Example: Unchecking a checkbox
 When('I uncheck the {string} checkbox', async function (selector) {
-  await this.page.uncheck(locators[selector.split('.')[0]][selector.split('.')[1]]);
+  await this.page.uncheck(getSelector(selector));
 });
 
 // Example: Check if a radio button is selected
 Then('The {string} radio button should be selected', async function (selector) {
-  const isChecked = await this.page.isChecked(
-    locators[selector.split('.')[0]][selector.split('.')[1]],
-  );
+  const isChecked = await this.page.isChecked(getSelector(selector));
   expect(isChecked).toBeTruthy();
 });
 
 // Example: Filling a form field
 When('I type {string} into the {string} field', async function (value, selector) {
-  await this.page.fill(
-    locators[selector.split('.')[0]][selector.split('.')[1]],
-    data[value.split('.')[0]][value.split('.')[1]],
-  );
+  await this.page.fill(getSelector(selector), data[value.split('.')[0]][value.split('.')[1]]);
 });
 
 // Example: Clear an input field
 When('I clear the {string} field', async function (selector) {
-  await this.page.fill(locators[selector.split('.')[0]][selector.split('.')[1]], '');
+  await this.page.fill(getSelector(selector), '');
 });
 
 // Example: Fill a form with data from a table (not tested)
@@ -84,59 +79,47 @@ When('I fill the form with the following data:', async function (dataTable) {
 
 // Example: Select an option from a dropdown
 When('I select {string} from the {string} dropdown', async function (option, selector) {
-  await this.page.selectOption(locators[selector.split('.')[0]][selector.split('.')[1]], option);
+  await this.page.selectOption(getSelector(selector), option);
 });
 
 // Example: Hover over an element
 When('I hover over the {string}', async function (selector) {
-  await this.page.hover(locators[selector.split('.')[0]][selector.split('.')[1]]);
+  await this.page.hover(getSelector(selector));
 });
 
 // Example: Scroll to an element
 When('I scroll to the {string}', async function (selector) {
-  await this.page
-    .locator(locators[selector.split('.')[0]][selector.split('.')[1]])
-    .scrollIntoViewIfNeeded();
+  await this.page.locator(getSelector(selector)).scrollIntoViewIfNeeded();
 });
 
 // Assertions
 
 // Example: Verifying an element's visibility
 Then('I should see the {string} element', async function (selector) {
-  expect(
-    await this.page.isVisible(locators[selector.split('.')[0]][selector.split('.')[1]]),
-  ).toBeTruthy();
+  expect(await this.page.isVisible(getSelector(selector))).toBeTruthy();
 });
 
 // Example: Verifying an element's visibility
 Then('the {string} should not be visible', async function (selector) {
-  const isVisible = await this.page.isVisible(
-    locators[selector.split('.')[0]][selector.split('.')[1]],
-  );
+  const isVisible = await this.page.isVisible(getSelector(selector));
   expect(isVisible).toBeFalsy();
 });
 
 // Example: Check if an element is enabled
 Then('the {string} should be enabled', async function (selector) {
-  const isEnabled = await this.page.isEnabled(
-    locators[selector.split('.')[0]][selector.split('.')[1]],
-  );
+  const isEnabled = await this.page.isEnabled(getSelector(selector));
   expect(isEnabled).toBeTruthy();
 });
 
 // Example: Check if an element is disabled
 Then('the {string} should be disabled', async function (selector) {
-  const isEnabled = await this.page.isEnabled(
-    locators[selector.split('.')[0]][selector.split('.')[1]],
-  );
+  const isEnabled = await this.page.isEnabled(getSelector(selector));
   expect(isEnabled).toBeFalsy();
 });
 
 // Example: Check if the field is empty
 Then('the {string} field should be empty', async function (selector) {
-  const value = await this.page.inputValue(
-    locators[selector.split('.')[0]][selector.split('.')[1]],
-  );
+  const value = await this.page.inputValue(getSelector(selector));
   expect(value).toBe('');
 });
 
@@ -144,10 +127,7 @@ Then('the {string} field should be empty', async function (selector) {
 Then(
   'the {string} attribute of the {string} should be {string}',
   async function (attribute, selector, expectedValue) {
-    const actualValue = await this.page.getAttribute(
-      locators[selector.split('.')[0]][selector.split('.')[1]],
-      attribute,
-    );
+    const actualValue = await this.page.getAttribute(getSelector(selector), attribute);
     expect(actualValue).toBe(expectedValue);
   },
 );
@@ -170,9 +150,7 @@ Then('The page title should be {string}', async function (title) {
 
 // Example: Check if an element contains specific text
 Then('The element {string} should contain the text {string}', async function (selector, text) {
-  const elementText = await this.page.textContent(
-    locators[selector.split('.')[0]][selector.split('.')[1]],
-  );
+  const elementText = await this.page.textContent(getSelector(selector));
   expect(elementText).toContain(text);
 });
 
@@ -184,9 +162,7 @@ Then('The URL should contain {string}', async function (expectedUrlPart) {
 
 // Example: Check if a URL contains specific text
 Then('The {string} checkbox should be checked', async function (selector) {
-  const isChecked = await this.page.isChecked(
-    locators[selector.split('.')[0]][selector.split('.')[1]],
-  );
+  const isChecked = await this.page.isChecked(getSelector(selector));
   expect(isChecked).toBeTruthy();
 });
 
@@ -197,7 +173,7 @@ When(
   'I press the enter key on element {string}',
   { timeout: 60 * 1000 },
   async function (selector) {
-    await this.page.press(locators[selector.split('.')[0]][selector.split('.')[1]], 'Enter');
+    await this.page.press(getSelector(selector), 'Enter');
   },
 );
 
@@ -216,9 +192,7 @@ When('I wait for {int} seconds', { timeout: 60 * 1000 }, async function (seconds
 
 // Example: Wait for a specific number of elements to be present (not tested)
 When('The count of elements {string} should be more than {int}', async function (selector, count) {
-  const elementCount = await this.page
-    .locator(locators[selector.split('.')[0]][selector.split('.')[1]])
-    .count();
+  const elementCount = await this.page.locator(getSelector(selector)).count();
   expect(elementCount).toBeGreaterThan(count);
 });
 
@@ -241,29 +215,27 @@ When(
   { timeout: 60 * 1000 },
   async function (selector, text) {
     // Wait for the element to appear and contain the text "Sort By:"
-    await this.page.waitForSelector(locators[selector.split('.')[0]][selector.split('.')[1]], {
+    await this.page.waitForSelector(getSelector(selector), {
       state: 'visible', // Ensure the element is visible
       timeout: 5000, // Optional: Adjust the timeout as needed
     });
 
     // Verify that the element contains the text "Sort By:"
-    const textContent = await this.page.textContent(
-      locators[selector.split('.')[0]][selector.split('.')[1]],
-    );
+    const textContent = await this.page.textContent(getSelector(selector));
     expect(textContent).toContain(text);
   },
 );
 
 // Example: Wait for an element to be visible
 When('I wait for the {string} to be visible', async function (selector) {
-  await this.page.waitForSelector(locators[selector.split('.')[0]][selector.split('.')[1]], {
+  await this.page.waitForSelector(getSelector(selector), {
     state: 'visible',
   });
 });
 
 // Example: Wait for a specific element to disappear
 When('I wait for the {string} to disappear', async function (selector) {
-  await this.page.waitForSelector(locators[selector.split('.')[0]][selector.split('.')[1]], {
+  await this.page.waitForSelector(getSelector(selector), {
     state: 'hidden',
   });
 });
@@ -311,7 +283,7 @@ Given(
 
 // Example: Upload a file
 When('I upload the file {string} to the {string} input', async function (filePath, selector) {
-  await this.page.setInputFiles(locators[selector.split('.')[0]][selector.split('.')[1]], filePath);
+  await this.page.setInputFiles(getSelector(selector), filePath);
 });
 
 // Modal and Popup Handling Steps

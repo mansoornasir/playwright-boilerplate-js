@@ -1,5 +1,5 @@
 // src/helpers/helpers.js
-
+const locators = require('../locators/locators');
 const fs = require('fs').promises;
 // Random Data Generation
 function generateRandomString(length) {
@@ -92,6 +92,8 @@ async function writeJsonFile(filePath, data) {
   await fs.writeFile(filePath, JSON.stringify(data, null, 2), 'utf-8');
 }
 
+const getSelector = (string, del = '.') => locators[string.split(del)[0]][string.split(del)[1]];
+
 // Export Functions
 module.exports = {
   generateRandomString,
@@ -105,4 +107,5 @@ module.exports = {
   getRandomPhoneNumber,
   getRandomUsername,
   generateRandomPassword,
+  getSelector,
 };
