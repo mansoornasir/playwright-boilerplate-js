@@ -3,6 +3,8 @@
 const { Before, After, BeforeAll, AfterAll } = require('@cucumber/cucumber');
 const { chromium } = require('playwright');
 require('../step-definitions/ui/web/common.steps');
+const fs = require('fs');
+const path = require('path');
 
 const CONFIG = {
   HEADLESS: process.env.HEADLESS === 'true',
@@ -14,6 +16,12 @@ const CONFIG = {
 // Global state
 let browser;
 let context;
+const root = path.resolve(process.cwd());
+// Ensure the screenshots directory exists
+const screenshotsDir = root + '\\reports\\screenshots\\';
+if (!fs.existsSync(screenshotsDir)) {
+  fs.mkdirSync(screenshotsDir);
+}
 
 // Setup before all tests
 BeforeAll(async () => {
@@ -40,7 +48,16 @@ Before(async function () {
 });
 
 // Teardown after each test
-After(async function () {
+After(async function (scenario) {
+  if (scenario.result.status === 'FAILED') {
+    // Capture a screenshot
+    const screenshotPath = screenshotsDir + `${scenario.pickle.name}-${Date.now()}.png`;
+    await this.page.screenshot({ path: screenshotPath });
+    console.log('failed scenario');
+    console.log(screenshotPath);
+    // Attach the screenshot to the Allure report
+    this.attach(fs.readFileSync(screenshotPath), 'image/png');
+  }
   if (this.page) {
     await this.page.close();
   }

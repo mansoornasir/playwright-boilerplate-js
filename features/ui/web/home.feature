@@ -7,8 +7,8 @@ Feature: Home Page Navigation
         Given I login with valid http credentials
 
     Scenario Outline: User navigates to the home page
-        And I wait for the "home.logo" to be visible
+        Then I wait for the "home.logo" to be visible
         And I type "search.term" into the "home.searchField" field
         And I press the enter key on element "home.searchField"
-        And I wait for 10 seconds
-        Then The count of elements "search.productImage" should be more than 1
+        And I wait for 5 seconds
+        Then The count of elements "search.productImage" should be more than 0

@@ -1,53 +1,48 @@
 const AllureCucumberReporter = require('allure-cucumberjs/reporter');
 
-module.exports = AllureCucumberReporter;
+class CustomAllureReporter {
+  constructor(options) {
+    // Set default options and merge with user-provided options
+    const defaultOptions = {
+      // outputDir: 'report/allure-results',
+      // useRelativePaths: true,
+      addCustomLabels: {
+        Environment: 'Test',
+      },
+      addCustomCategories: [
+        {
+          name: 'Priority',
+          value: 'High',
+        },
+      ],
+    };
 
-// const { CucumberJSAllureFormatter } = require('allure-cucumberjs');
-// const { AllureRuntime } = require('allure-js-commons');
+    this.options = { ...defaultOptions, ...options };
+    this.allureReporter = new AllureCucumberReporter(this.options);
+  }
 
-// const path = require('path');
+  async before() {
+    console.log('Before running tests');
+  }
 
-// class Reporter extends CucumberJSAllureFormatter {
-//   constructor(options) {
-//     super(
-//       options,
-//       new AllureRuntime({ resultsDir: path.resolve(__dirname, '../../allure-results') }),
-//       {},
-//     );
-//   }
-// }
+  async after() {
+    console.log('After running tests');
+  }
 
-// module.exports.Reporter = Reporter;
+  handleTestCaseResult(event) {
+    console.log('Handling test case result:', event);
+    this.allureReporter.handleTestCaseResult(event);
+  }
 
-// const { AllureRuntime } = require('allure-js-commons');
-// const { CucumberJSAllureFormatter } = require('allure-cucumberjs');
+  handleTestStepResult(event) {
+    console.log('Handling test step result:', event);
+    this.allureReporter.handleTestStepResult(event);
+  }
 
-// class MyCucumberJSAllureFormatter extends CucumberJSAllureFormatter {
-//   constructor(options) {
-//     super(options, new AllureRuntime({ resultsDir: './allure-results' }), {
-//       labels: [
-//         {
-//           pattern: [/@feature:(.*)/],
-//           name: 'epic',
-//         },
-//         {
-//           pattern: [/@severity:(.*)/],
-//           name: 'severity',
-//         },
-//       ],
-//       links: [
-//         {
-//           pattern: [/@issue=(.*)/],
-//           type: 'issue',
-//           urlTemplate: 'http://localhost:8080/issue/%s',
-//         },
-//         {
-//           pattern: [/@testcases=(.*)/],
-//           type: 'testcases',
-//           urlTemplate: 'http://localhost:8080/testcases/%s',
-//         },
-//       ],
-//     });
-//   }
-// }
-// module.exports = MyCucumberJSAllureFormatter;
+  async finished() {
+    console.log('Test run finished');
+    await this.allureReporter.finished();
+  }
+}
+
+module.exports = CustomAllureReporter;
