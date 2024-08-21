@@ -1,6 +1,7 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { expect } = require('@playwright/test');
 const locators = require('../../../locators/locators');
+const data = require('../../../data/test-data');
 
 // Navigation
 
@@ -63,7 +64,10 @@ Then('The {string} radio button should be selected', async function (selector) {
 
 // Example: Filling a form field
 When('I type {string} into the {string} field', async function (value, selector) {
-  await this.page.fill(locators[selector.split('.')[0]][selector.split('.')[1]], value);
+  await this.page.fill(
+    locators[selector.split('.')[0]][selector.split('.')[1]],
+    data[value.split('.')[0]][value.split('.')[1]],
+  );
 });
 
 // Example: Clear an input field
@@ -189,12 +193,16 @@ Then('The {string} checkbox should be checked', async function (selector) {
 // Keyboard Interactions
 
 // Example: I press Enter key
-When('I press the enter key on element {string}', async function (selector) {
-  await this.page.press(locators[selector.split('.')[0]][selector.split('.')[1]], 'Enter');
-});
+When(
+  'I press the enter key on element {string}',
+  { timeout: 60 * 1000 },
+  async function (selector) {
+    await this.page.press(locators[selector.split('.')[0]][selector.split('.')[1]], 'Enter');
+  },
+);
 
 // When I press Escape key
-When('I press the escape key', async function () {
+When('I press the escape key', { timeout: 60 * 1000 }, async function () {
   const page = this.page; // Assuming 'page' is available in the context
   await page.keyboard.press('Escape');
 });
@@ -202,17 +210,16 @@ When('I press the escape key', async function () {
 // Waiting
 
 // Example: Waiting for a specific duration
-When('I wait for {int} seconds', async function (seconds) {
+When('I wait for {int} seconds', { timeout: 60 * 1000 }, async function (seconds) {
   await this.page.waitForTimeout(seconds * 1000);
 });
 
 // Example: Wait for a specific number of elements to be present (not tested)
-When('I wait for {int} {string} elements to be present', async function (count, selector) {
-  await this.page.waitForFunction(
-    (selector, count) => document.querySelectorAll(selector).length === count,
-    selector,
-    count,
-  );
+When('The count of elements {string} should be more than {int}', async function (selector, count) {
+  const elementCount = await this.page
+    .locator(locators[selector.split('.')[0]][selector.split('.')[1]])
+    .count();
+  expect(elementCount).toBeGreaterThan(count);
 });
 
 // Example: Wait for an element’s attribute to have a specific value (not tested)
@@ -229,13 +236,23 @@ When(
   },
 );
 // Example: Wait for an element to contain specific text
-When('I wait for the {string} to contain the text {string}', async function (selector, text) {
-  await this.page.waitForFunction(
-    (selector, text) => document.querySelector(selector).innerText.includes(text),
-    selector,
-    text,
-  );
-});
+When(
+  'I wait for the {string} to contain the text {string}',
+  { timeout: 60 * 1000 },
+  async function (selector, text) {
+    // Wait for the element to appear and contain the text "Sort By:"
+    await this.page.waitForSelector(locators[selector.split('.')[0]][selector.split('.')[1]], {
+      state: 'visible', // Ensure the element is visible
+      timeout: 5000, // Optional: Adjust the timeout as needed
+    });
+
+    // Verify that the element contains the text "Sort By:"
+    const textContent = await this.page.textContent(
+      locators[selector.split('.')[0]][selector.split('.')[1]],
+    );
+    expect(textContent).toContain(text);
+  },
+);
 
 // Example: Wait for an element to be visible
 When('I wait for the {string} to be visible', async function (selector) {
@@ -335,4 +352,13 @@ When('I switch to the iframe {string}', async function (selector) {
 // Example: Switch back to main frame
 When('I switch back to the main content', async function () {
   this.page = this.page.mainFrame();
+});
+
+// Auth utility
+Given('I login with valid http credentials', { timeout: 60 * 1000 }, async function () {
+  await this.page.context().setHTTPCredentials({
+    username: process.env.HTTP_USERNAME,
+    password: process.env.HTTP_PASSWORD,
+  });
+  await this.page.goto(process.env.BASE_URL);
 });

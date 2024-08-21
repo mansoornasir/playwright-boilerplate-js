@@ -1,10 +1,9 @@
 // src/hooks/hooks.js
 
-require('dotenv').config(); // Load environment variables from .env file
 const { Before, After, BeforeAll, AfterAll } = require('@cucumber/cucumber');
 const { chromium } = require('playwright');
 require('../step-definitions/ui/web/common.steps');
-// Load configuration from environment variables
+
 const CONFIG = {
   HEADLESS: process.env.HEADLESS === 'true',
   VIEWPORT_WIDTH: parseInt(process.env.VIEWPORT_WIDTH, 10) || 1280,

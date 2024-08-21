@@ -4,16 +4,11 @@ Feature: Home Page Navigation
     I want to be able to navigate to the home page
     So that I can access the main features of the website
     Background:
-        Given I navigate to "home.url"
+        Given I login with valid http credentials
 
     Scenario Outline: User navigates to the home page
-        When I click on the "home.loginBtn"
-
-    Scenario Outline: User navigates to the home page again
-        When I click on the "home.loginBtn"
-        Then I should see the "home.loginBtn" element
-
-    Scenario Outline: User navigates to the home page once again
-        When I click on the "home.loginBtn"
-        Then I should see the "home.loginBtn" element
-        Then I should see the "home.loginBtn" element
+        And I wait for the "home.logo" to be visible
+        And I type "search.term" into the "home.searchField" field
+        And I press the enter key on element "home.searchField"
+        And I wait for 10 seconds
+        Then The count of elements "search.productImage" should be more than 1

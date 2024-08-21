@@ -21,6 +21,7 @@
   "devDependencies": {
     "@cucumber/cucumber": "^7.3.2",
     "@cucumber/pretty-formatter": "^1.0.1",
+    "@faker-js/faker": "^8.4.1",
     "@playwright/test": "^1.46.1",
     "@types/node": "^22.2.0",
     "allure-commandline": "^2.30.0",
@@ -28,7 +29,6 @@
     "allure-js-commons": "^3.0.0-beta.10",
     "allure-playwright": "^3.0.0-beta.9",
     "cucumber-playwright": "^1.2.1",
-    "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
@@ -38,5 +38,8 @@
     "prettier": "3.3.3",
     "prettier-eslint": "^16.3.0",
     "rimraf": "^5.0.10"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
   }
 }

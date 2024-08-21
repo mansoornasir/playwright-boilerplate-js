@@ -156,9 +156,9 @@ https://mansoornasir.github.io/playwright-boilerplate-js/
 
   - _Waits for the specified duration (in seconds)._
 
-- **`I wait for {int} {string} elements to be present`**
+- **`The count of elements {string} should be more than {int}`**
 
-  - _Waits for a specific number of elements to be present on the page._
+  - _Waits for a minimum (or more) number of elements to be present on the page._
 
 - **`I wait for the {string} attribute of the {string} to be {string}`**
 
@@ -238,3 +238,11 @@ https://mansoornasir.github.io/playwright-boilerplate-js/
 
 - **`I switch back to the main content`**
   - _Switches back to the main content from an iframe._
+
+## Authentication
+
+### Given
+
+- **`I login with valid http credentials`**
+
+  - Login user with valid credentials defined in .env file

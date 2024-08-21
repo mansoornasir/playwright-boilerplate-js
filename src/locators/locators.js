@@ -1,16 +1,11 @@
 const locators = {
   home: {
-    logo: '.login_logo',
-    url: 'https://saucedemo.com',
-    loginBtn: '#login-button',
+    url: process.env.BASE_URL,
+    logo: '.logo-home',
+    searchField: '#search-results',
   },
-  cart: {
-    url: 'https://saucedemo.com',
-    icon: '.icon',
-    loginBtn: '#login-button',
-  },
-  checkout: {
-    loginBtn: '#login-button',
+  search: {
+    productImage: 'img.tile-image',
   },
 };
 

@@ -1,11 +1,21 @@
+const dotenv = require('dotenv'); // Load environment variables from .env file
+dotenv.config();
+const path = require('path');
+
+const environment = process.env.NODE_ENV || 'development';
+dotenv.config({ path: path.resolve(process.cwd(), `.env.${environment}`) });
 
 const common = [
   '--require ./src/step-definitions/**/*.js',        // Load step definitions
   '--require ./src/support/hooks.js',               // Load hooks
-  '--format ./src/support/allure-reporter.js',      // Show a progress bar during execution
   './features/**/*.feature',                    // Path to your feature files
   '--publish-quiet',                                // Don't print the publishing message
 ];
+if (process.env.USE_ALLURE === "true") {
+  common.push('--format ./src/support/allure-reporter.js');
+} else {
+  common.push(`--format ${process.env.REPORT_FORMAT}`);
+}
 
 module.exports = {
   default: common.join(' '),
