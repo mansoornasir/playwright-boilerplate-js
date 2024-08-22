@@ -95,7 +95,7 @@ async function writeJsonFile(filePath, data) {
 }
 
 const getSelector = (string, del = '.') => locators[string.split(del)[0]][string.split(del)[1]];
-const getData = (string, del = '.') => locators[string.split(del)[0]][string.split(del)[1]];
+const getData = (string, del = '.') => data[string.split(del)[0]][string.split(del)[1]];
 
 // Export Functions
 module.exports = {
