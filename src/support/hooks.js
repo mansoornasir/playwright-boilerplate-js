@@ -1,6 +1,11 @@
 // src/hooks/hooks.js
 
-const { Before, After, BeforeAll, AfterAll } = require('@cucumber/cucumber');
+const {
+  Before,
+  After,
+  BeforeAll,
+  AfterAll,
+} = require('@cucumber/cucumber');
 const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
@@ -9,10 +14,15 @@ require('../step-definitions/ui/web/common.steps');
 
 const CONFIG = {
   HEADLESS: process.env.HEADLESS === 'true',
-  VIEWPORT_WIDTH: parseInt(process.env.VIEWPORT_WIDTH, 10) || 1280,
-  VIEWPORT_HEIGHT: parseInt(process.env.VIEWPORT_HEIGHT, 10) || 720,
-  PAGE_LOAD_TIMEOUT: parseInt(process.env.PAGE_LOAD_TIMEOUT, 10) || 30000,
-  ELEMENT_VISIBLE_TIMEOUT: parseInt(process.env.ELEMENT_VISIBLE_TIMEOUT, 10) || 10000,
+  VIEWPORT_WIDTH:
+    parseInt(process.env.VIEWPORT_WIDTH, 10) || 1280,
+  VIEWPORT_HEIGHT:
+    parseInt(process.env.VIEWPORT_HEIGHT, 10) || 720,
+  PAGE_LOAD_TIMEOUT:
+    parseInt(process.env.PAGE_LOAD_TIMEOUT, 10) || 30000,
+  ELEMENT_VISIBLE_TIMEOUT:
+    parseInt(process.env.ELEMENT_VISIBLE_TIMEOUT, 10) ||
+    10000,
 };
 // Global state
 let browser;
@@ -56,10 +66,15 @@ Before(async function () {
 After(async function (scenario) {
   if (scenario.result.status === 'FAILED') {
     // Capture a screenshot
-    const screenshotPath = screenshotsDir + `${scenario.pickle.name}-${Date.now()}.png`;
+    const screenshotPath =
+      screenshotsDir +
+      `${scenario.pickle.name}-${Date.now()}.png`;
     await this.page.screenshot({ path: screenshotPath });
     // Attach the screenshot to the Allure report
-    this.attach(fs.readFileSync(screenshotPath), 'image/png');
+    this.attach(
+      fs.readFileSync(screenshotPath),
+      'image/png',
+    );
   }
   if (this.page) {
     await this.page.close();

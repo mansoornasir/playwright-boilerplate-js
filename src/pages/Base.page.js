@@ -17,7 +17,10 @@ class BasePage {
     try {
       await this.page.click(selector);
     } catch (error) {
-      console.error(`Failed to click on ${selector}:`, error);
+      console.error(
+        `Failed to click on ${selector}:`,
+        error,
+      );
       throw error;
     }
   }
@@ -27,7 +30,10 @@ class BasePage {
     try {
       await this.page.fill(selector, value);
     } catch (error) {
-      console.error(`Failed to fill ${selector} with ${value}:`, error);
+      console.error(
+        `Failed to fill ${selector} with ${value}:`,
+        error,
+      );
       throw error;
     }
   }
@@ -37,7 +43,10 @@ class BasePage {
     try {
       return await this.page.textContent(selector);
     } catch (error) {
-      console.error(`Failed to get text from ${selector}:`, error);
+      console.error(
+        `Failed to get text from ${selector}:`,
+        error,
+      );
       throw error;
     }
   }
@@ -47,7 +56,10 @@ class BasePage {
     try {
       return await this.page.isVisible(selector);
     } catch (error) {
-      console.error(`Failed to check visibility of ${selector}:`, error);
+      console.error(
+        `Failed to check visibility of ${selector}:`,
+        error,
+      );
       throw error;
     }
   }
@@ -55,9 +67,15 @@ class BasePage {
   // Method to wait for an element to be visible
   async waitForVisible(selector, timeout = 30000) {
     try {
-      await this.page.waitForSelector(selector, { state: 'visible', timeout });
+      await this.page.waitForSelector(selector, {
+        state: 'visible',
+        timeout,
+      });
     } catch (error) {
-      console.error(`Failed to wait for ${selector} to be visible:`, error);
+      console.error(
+        `Failed to wait for ${selector} to be visible:`,
+        error,
+      );
       throw error;
     }
   }
