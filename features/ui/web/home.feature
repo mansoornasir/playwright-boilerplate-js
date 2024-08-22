@@ -10,12 +10,12 @@ Feature: Home Page Navigation
     #     And I wait for the "home.logo" to be visible
     #     And I type "search.term" into the "home.searchField" field
     #     And I press the enter key on element "home.searchField"
-    #     And I wait for 10 seconds
+    #     And I wait for 5 seconds
     #     Then The count of elements "search.productImage" should be more than 0
 
     Scenario Outline: User login with valid credentials
         And I wait for the "home.logo" to be visible
         And I am on the login page
-        And I wait for 10 seconds
+        And I wait for 5 seconds
         And I login with valid credentials
-        And I wait for 10 seconds
+        And I wait for 5 seconds
