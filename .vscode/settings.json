@@ -1,5 +1,5 @@
 {
-    "window.zoomLevel": 0.5,
+    "window.zoomLevel": 0.3,
     "editor.tabSize": 2,
     "files.exclude": {
         "**/.DS_Store": true,
@@ -16,6 +16,7 @@
     "editor.minimap.showSlider": "always",
     "editor.minimap.renderCharacters": true,
     "editor.mouseWheelZoom": true,
+    "editor.fontSize": 15,
     "editor.quickSuggestions": {
         "other": true,
         "comments": false,
@@ -31,9 +32,9 @@
     "git.autofetch": true,
     "prettier.singleQuote": true,
     "prettier.trailingComma": "all",
-    "cucumberautocomplete.syncfeatures": "../src/features/**/*.feature",
+    "cucumberautocomplete.syncfeatures": "../features/**/*.feature",
     "cucumberautocomplete.steps": [
-        "../src/step-definitions/**/*.js"
+        "../src/step-definitions/**/*.steps.js"
     ],
     "typescript.tsdk": "node_modules/typescript/lib",
     "editor.codeActionsOnSave": {
