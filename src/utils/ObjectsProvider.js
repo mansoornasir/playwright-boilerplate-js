@@ -1,9 +1,8 @@
-// src/pageObjects/PageObjectFactory.js
-
-class PageObjectFactory {
+class ObjectsProvider {
   constructor(page) {
     this.page = page;
     this.pageObjects = {};
+    this.initializedObjects = {};
   }
 
   register(name, PageObjectClass) {
@@ -17,6 +16,13 @@ class PageObjectFactory {
     }
     return new PageObjectClass(this.page);
   }
+
+  initializeAll() {
+    for (const name in this.pageObjects) {
+      this.initializedObjects[name] = this.create(name);
+    }
+    return this.initializedObjects;
+  }
 }
 
-module.exports = PageObjectFactory;
+module.exports = ObjectsProvider;

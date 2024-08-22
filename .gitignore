@@ -60,7 +60,9 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env.*
+.env.development
+.env.production
+.env
 
 #reports
 # reports/*.html

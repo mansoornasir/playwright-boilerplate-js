@@ -2,10 +2,10 @@
 
 const { Before, After, BeforeAll, AfterAll } = require('@cucumber/cucumber');
 const { chromium } = require('playwright');
-require('../step-definitions/ui/web/common.steps');
 const fs = require('fs');
 const path = require('path');
-const { setupTestContext } = require('./testSetup');
+const { setupTestContext } = require('./pagesSetup');
+require('../step-definitions/ui/web/common.steps');
 
 const CONFIG = {
   HEADLESS: process.env.HEADLESS === 'true',
@@ -45,14 +45,11 @@ Before(async function () {
     ignoreHTTPSErrors: true, // Example: Ignore HTTPS errors if needed
   });
   this.page = await context.newPage();
-  const { pageObjectFactory } = await setupTestContext(this.page);
-  this.pageObjectFactory = pageObjectFactory;
+  const { pageObjects } = await setupTestContext(this.page);
+  this.allPageObjects = pageObjects;
 
-  // Initialize commonly used Page Objects
-  this.loginPage = this.pageObjectFactory.create('LoginPage');
-  this.homePage = this.pageObjectFactory.create('HomePage');
-
-  // this.loginPage = new (require('../pages/Login.page'))(this.page);
+  // Initialize all used Page Objects
+  this.pages = this.allPageObjects.initializeAll();
 });
 
 // Teardown after each test
