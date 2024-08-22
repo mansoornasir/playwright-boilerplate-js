@@ -2,23 +2,7 @@ const AllureCucumberReporter = require('allure-cucumberjs/reporter');
 
 class CustomAllureReporter {
   constructor(options) {
-    // Set default options and merge with user-provided options
-    const defaultOptions = {
-      // outputDir: 'report/allure-results',
-      // useRelativePaths: true,
-      addCustomLabels: {
-        Environment: 'Test',
-      },
-      addCustomCategories: [
-        {
-          name: 'Priority',
-          value: 'High',
-        },
-      ],
-    };
-
-    this.options = { ...defaultOptions, ...options };
-    this.allureReporter = new AllureCucumberReporter(this.options);
+    this.allureReporter = new AllureCucumberReporter(options);
   }
 
   async before() {

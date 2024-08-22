@@ -9,13 +9,15 @@ const environment = process.env.NODE_ENV || 'development';
 dotenv.config({ path: path.resolve(process.cwd(), `.env.${environment}`) });
 
 const common = [
-  '--require ./src/step-definitions/**/*.js',        // Load step definitions
-  '--require ./src/support/hooks.js',               // Load hooks
-  './features/**/*.feature',                    // Path to your feature files
-  '--publish-quiet'                                // Don't print the publishing message
+  '--require ./src/step-definitions/**/*.js',
+  '--require ./src/support/hooks.js',
+  './features/**/*.feature',
+  '--publish-quiet',
+  '--format json:./reports/results.json'
 ];
 if (process.env.USE_ALLURE === "true") {
-  common.push('--format ./src/support/allure-reporter.js --format summary --format @cucumber/pretty-formatter');
+  common.push('--format @cucumber/pretty-formatter');
+  common.push('--format ./src/support/allure-reporter.js:./reports/allure-results');
 } else {
   common.push(`--format ${process.env.REPORT_FORMAT}`);
 }
