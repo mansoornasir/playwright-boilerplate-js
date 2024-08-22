@@ -12,9 +12,7 @@ class ObjectsProvider {
   create(name) {
     const PageObjectClass = this.pageObjects[name];
     if (!PageObjectClass) {
-      throw new Error(
-        `PageObject ${name} is not registered.`,
-      );
+      throw new Error(`PageObject ${name} is not registered.`);
     }
     return new PageObjectClass(this.page);
   }

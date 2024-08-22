@@ -14,7 +14,9 @@ const locators = {
     loginBtn: '.login-btn',
   },
   dashboard: {
+    url: 'https://sfcc.petfoodking.com/account?registration=false',
     accountSettingsText: '.profile-header',
+    accountSettingsIcon: '.profile-settings-img img',
   },
 };
 

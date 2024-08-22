@@ -16,6 +16,5 @@ Feature: Home Page Navigation
     Scenario Outline: User login with valid credentials
         And I wait for the "home.logo" to be visible
         And I am on the login page
-        And I wait for 5 seconds
+        And I wait for the page to fully load
         And I login with valid credentials
-        And I wait for 5 seconds

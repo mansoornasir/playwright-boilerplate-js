@@ -18,9 +18,7 @@ class CustomAllureReporter {
     };
 
     this.options = { ...defaultOptions, ...options };
-    this.allureReporter = new AllureCucumberReporter(
-      this.options,
-    );
+    this.allureReporter = new AllureCucumberReporter(this.options);
   }
 
   async before() {
