@@ -1,4 +1,4 @@
-const HomePageLocators = require('../locators/locators');
+const locators = require('../locators/locators');
 const BasePage = require('./Base.page');
 
 /**
@@ -17,7 +17,7 @@ class HomePage extends BasePage {
     await this.goto(url);
   }
   async verifyWelcomeMessage() {
-    await this.isVisible(HomePageLocators.logo);
+    await this.isVisible(locators.home.logo);
   }
 }
 

@@ -94,8 +94,10 @@ async function writeJsonFile(filePath, data) {
   await fs.writeFile(filePath, JSON.stringify(data, null, 2), 'utf-8');
 }
 
-const getSelector = (string, del = '.') => locators[string.split(del)[0]][string.split(del)[1]];
-const getData = (string, del = '.') => data[string.split(del)[0]][string.split(del)[1]];
+const getSelector = (string, del = '.') =>
+  string.split(del).reduce((acc, key) => acc[key], locators);
+
+const getData = (string, del = '.') => string.split(del).reduce((acc, key) => acc[key], data);
 
 // Export Functions
 module.exports = {

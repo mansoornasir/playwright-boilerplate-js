@@ -5,9 +5,13 @@ const { getSelector, getData } = require('../../../utils/helpers');
 // Navigation
 
 // Example: Navigating to a URL
-Given('I navigate to {string}', async function (selector) {
-  await this.page.goto(getSelector(selector));
-});
+Given(
+  'I navigate to {string}',
+  { timeout: parseInt(process.env.DEFAULT_TIMEOUT) },
+  async function (selector) {
+    await this.page.goto(getSelector(selector));
+  },
+);
 
 // Example: Navigate back
 When('I navigate back', async function () {
@@ -234,11 +238,15 @@ When(
 );
 
 // Example: Wait for an element to be visible
-When('I wait for the {string} to be visible', async function (selector) {
-  await this.page.waitForSelector(getSelector(selector), {
-    state: 'visible',
-  });
-});
+When(
+  'I wait for the {string} to be visible',
+  { timeout: parseInt(process.env.DEFAULT_TIMEOUT) },
+  async function (selector) {
+    await this.page.waitForSelector(getSelector(selector), {
+      state: 'visible',
+    });
+  },
+);
 
 // Example: Wait for a specific element to disappear
 When('I wait for the {string} to disappear', async function (selector) {
