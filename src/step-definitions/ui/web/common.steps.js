@@ -1,7 +1,6 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { expect } = require('@playwright/test');
-const data = require('../../../data/test-data');
-const { getSelector } = require('../../../utils/helpers');
+const { getSelector, getData } = require('../../../utils/helpers');
 
 // Navigation
 
@@ -62,7 +61,7 @@ Then('The {string} radio button should be selected', async function (selector) {
 
 // Example: Filling a form field
 When('I type {string} into the {string} field', async function (value, selector) {
-  await this.page.fill(getSelector(selector), data[value.split('.')[0]][value.split('.')[1]]);
+  await this.page.fill(getSelector(selector), getData(value));
 });
 
 // Example: Clear an input field
@@ -171,24 +170,32 @@ Then('The {string} checkbox should be checked', async function (selector) {
 // Example: I press Enter key
 When(
   'I press the enter key on element {string}',
-  { timeout: 60 * 1000 },
+  { timeout: parseInt(process.env.DEFAULT_TIMEOUT) },
   async function (selector) {
     await this.page.press(getSelector(selector), 'Enter');
   },
 );
 
 // When I press Escape key
-When('I press the escape key', { timeout: 60 * 1000 }, async function () {
-  const page = this.page; // Assuming 'page' is available in the context
-  await page.keyboard.press('Escape');
-});
+When(
+  'I press the escape key',
+  { timeout: parseInt(process.env.DEFAULT_TIMEOUT) },
+  async function () {
+    const page = this.page; // Assuming 'page' is available in the context
+    await page.keyboard.press('Escape');
+  },
+);
 
 // Waiting
 
 // Example: Waiting for a specific duration
-When('I wait for {int} seconds', { timeout: 60 * 1000 }, async function (seconds) {
-  await this.page.waitForTimeout(seconds * 1000);
-});
+When(
+  'I wait for {int} seconds',
+  { timeout: parseInt(process.env.DEFAULT_TIMEOUT) },
+  async function (seconds) {
+    await this.page.waitForTimeout(seconds * 1000);
+  },
+);
 
 // Example: Wait for a specific number of elements to be present (not tested)
 When('The count of elements {string} should be more than {int}', async function (selector, count) {
@@ -212,7 +219,7 @@ When(
 // Example: Wait for an element to contain specific text
 When(
   'I wait for the {string} to contain the text {string}',
-  { timeout: 60 * 1000 },
+  { timeout: parseInt(process.env.DEFAULT_TIMEOUT) },
   async function (selector, text) {
     // Wait for the element to appear and contain the text "Sort By:"
     await this.page.waitForSelector(getSelector(selector), {
@@ -327,10 +334,14 @@ When('I switch back to the main content', async function () {
 });
 
 // Auth utility
-Given('I login with valid http credentials', { timeout: 60 * 1000 }, async function () {
-  await this.page.context().setHTTPCredentials({
-    username: process.env.HTTP_USERNAME,
-    password: process.env.HTTP_PASSWORD,
-  });
-  await this.page.goto(process.env.BASE_URL);
-});
+Given(
+  'I login with valid http credentials',
+  { timeout: parseInt(process.env.DEFAULT_TIMEOUT) },
+  async function () {
+    await this.page.context().setHTTPCredentials({
+      username: process.env.HTTP_USERNAME,
+      password: process.env.HTTP_PASSWORD,
+    });
+    await this.page.goto(process.env.BASE_URL);
+  },
+);

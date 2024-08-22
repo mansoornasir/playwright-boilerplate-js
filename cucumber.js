@@ -1,3 +1,7 @@
+// TODO 
+// I NEED TO REFACTOR THIS TO WORK WITH NOT common but with the commented section
+
+
 const dotenv = require('dotenv'); // Load environment variables from .env file
 dotenv.config();
 const path = require('path');
