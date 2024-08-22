@@ -17,7 +17,7 @@ class LoginPage extends BasePage {
     await this.fill(locators.signin.passwordField, data.cust.password);
     await this.click(locators.signin.loginBtn);
     await this.isVisible(locators.dashboard.accountSettingsText);
-    await this.page.waitForTimeout(10000); // Waits for 10 seconds
+    await this.page.waitForTimeout(5000); // Waits for 10 seconds
   }
 }
 

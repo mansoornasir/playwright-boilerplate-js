@@ -5,6 +5,7 @@ const { chromium } = require('playwright');
 require('../step-definitions/ui/web/common.steps');
 const fs = require('fs');
 const path = require('path');
+const { setupTestContext } = require('./testSetup');
 
 const CONFIG = {
   HEADLESS: process.env.HEADLESS === 'true',
@@ -35,7 +36,6 @@ BeforeAll(async () => {
   });
 });
 
-// Setup before each test
 Before(async function () {
   context = await browser.newContext({
     viewport: {
@@ -45,6 +45,14 @@ Before(async function () {
     ignoreHTTPSErrors: true, // Example: Ignore HTTPS errors if needed
   });
   this.page = await context.newPage();
+  const { pageObjectFactory } = await setupTestContext(this.page);
+  this.pageObjectFactory = pageObjectFactory;
+
+  // Initialize commonly used Page Objects
+  this.loginPage = this.pageObjectFactory.create('LoginPage');
+  this.homePage = this.pageObjectFactory.create('HomePage');
+
+  // this.loginPage = new (require('../pages/Login.page'))(this.page);
 });
 
 // Teardown after each test
@@ -53,8 +61,6 @@ After(async function (scenario) {
     // Capture a screenshot
     const screenshotPath = screenshotsDir + `${scenario.pickle.name}-${Date.now()}.png`;
     await this.page.screenshot({ path: screenshotPath });
-    console.log('failed scenario');
-    console.log(screenshotPath);
     // Attach the screenshot to the Allure report
     this.attach(fs.readFileSync(screenshotPath), 'image/png');
   }
