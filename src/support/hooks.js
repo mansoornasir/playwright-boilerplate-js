@@ -1,11 +1,14 @@
 // src/hooks/hooks.js
 
-const { Before, After, BeforeAll, AfterAll } = require('@cucumber/cucumber');
+const { Before, After, BeforeAll, AfterAll, setDefaultTimeout } = require('@cucumber/cucumber');
 const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
 const { setupTestContext } = require('./pagesSetup');
 require('../step-definitions/ui/web/common.steps');
+const capabilities = require('./browserstack-capabilities');
+
+setDefaultTimeout(60 * 1000);
 
 const CONFIG = {
   HEADLESS: process.env.HEADLESS === 'true',
@@ -26,8 +29,14 @@ if (!fs.existsSync(screenshotsDir)) {
 
 // Setup before all tests
 BeforeAll(async () => {
+  const caps = capabilities[0];
+  // Add BrowserStack credentials to the capability dynamically
+  caps['browserstack.username'] = process.env.BROWSERSTACK_USERNAME;
+  caps['browserstack.accessKey'] = process.env.BROWSERSTACK_ACCESS_KEY;
   // Launch browser
-  browser = await chromium.launch({
+  browser = await chromium.connect({
+    wsEndpoint:
+      `wss://cdp.browserstack.com/playwright?caps=` + `${encodeURIComponent(JSON.stringify(caps))}`,
     headless: CONFIG.HEADLESS,
     viewport: {
       width: CONFIG.VIEWPORT_WIDTH,
@@ -54,6 +63,30 @@ Before(async function () {
 
 // Teardown after each test
 After(async function (scenario) {
+  await this.page.evaluate(
+    // eslint-disable-next-line prettier/prettier
+    (_) => { },
+    `browserstack_executor: {
+    "action": "setSessionStatus", 
+    "arguments": {
+      "status": "${scenario.result.status}",
+      "reason": "All tests passed successfully",
+      "name": "${scenario.pickle.name}",
+      "build": "default-build",
+      "project": "Test Project",
+      "tags": ["smoke", "login", "chrome"],
+      "custom_data": {
+        "module": "Authentication",
+        "feature": "Login",
+        "environment": "${process.env.NODE_ENV}"
+      }
+    }
+  }`,
+  );
+
+  if (scenario.result.status === 'PASSED') {
+    console.log(scenario.pickle.name);
+  }
   if (scenario.result.status === 'FAILED') {
     // Capture a screenshot
     const screenshotPath = screenshotsDir + `${scenario.pickle.name}-${Date.now()}.png`;
