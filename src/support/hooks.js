@@ -35,6 +35,7 @@ After(async function (scenario) {
     this.page,
     CONFIG.screenshotsDir,
     USE_BROWSERSTACK,
+    this,
   );
 });
 

@@ -50,7 +50,14 @@ async function setupBrowser(USE_BROWSERSTACK) {
   return browser;
 }
 
-async function handleBrowserStackLogic(scenario, context, page, screenshotsDir, USE_BROWSERSTACK) {
+async function handleBrowserStackLogic(
+  scenario,
+  context,
+  page,
+  screenshotsDir,
+  USE_BROWSERSTACK,
+  This,
+) {
   const tags = extractTags(scenario);
   const status = scenario.result.status === 'PASSED' ? 'passed' : 'FAILED';
   const reason =
@@ -64,7 +71,7 @@ async function handleBrowserStackLogic(scenario, context, page, screenshotsDir, 
 
   if (status === 'FAILED') {
     const screenshot = await captureAndAttachScreenshot(page, scenario, screenshotsDir);
-    if (screenshot) page.attach(screenshot, 'image/png'); // not working
+    if (screenshot) This.attach(screenshot, 'image/png');
   }
 
   if (page) await page.close();
