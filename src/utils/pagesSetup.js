@@ -1,4 +1,4 @@
-const ObjectsProvider = require('../utils/ObjectsProvider');
+const ObjectsProvider = require('./ObjectsProvider');
 const LoginPage = require('../pages/Login.page');
 const HomePage = require('../pages/Home.page');
 

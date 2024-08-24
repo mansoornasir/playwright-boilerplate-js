@@ -1,7 +1,7 @@
 const locators = {
   home: {
     url: process.env.BASE_URL,
-    logo: '.logo-home',
+    logo: '.login_logo',
     searchField: '#search-results',
     signinUrl: 'https://sfcc.petfoodking.com/signin',
   },
