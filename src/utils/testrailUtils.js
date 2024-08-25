@@ -9,19 +9,20 @@ const options = {
 
 const client = new client_options(options);
 
-const addRun = async (runName, runDescription, projectId, testSuiteId, caseIds) => {
+const addRun = async (runName, runDescription, projectId, testSuiteId) => {
   // const runName = 'Example Run Name';
   // const runDescription = 'Example Run Description';
   // const projectId = 20;
   // const testSuiteId = 22; // optional
   // const caseIds = [925, 926, 927]; // optional
-
-  client
-    .addRun(runName, runDescription, projectId, testSuiteId, caseIds)
-    .then(function (runId) {
-      console.log(`Created run with id: ${runId}`);
-    })
-    .catch((error) => console.error(error));
+  try {
+    const runId = await client.addRun(runName, runDescription, projectId, testSuiteId);
+    // console.log(`Created run with id: ${runId}`);
+    return runId;
+  } catch (error) {
+    console.error(error);
+    throw error; // rethrow the error if you want to handle it elsewhere
+  }
 };
 
 const addResultsForCases = async (runId, reportTests) => {
@@ -82,7 +83,7 @@ const closeRun = async (runId) => {
     .catch((error) => console.error(error));
 };
 
-const setTestRailResults = async (page, scenario, CONFIG) => {
+const setTestRailResultsForKnowTestRun = async (page, scenario, CONFIG) => {
   if (CONFIG.USE_TESTRAIL && CONFIG.TESTRAIL_TESTRUN_ID) {
     // this is in case we are using already created testrun with TEST_ID defined in .env
     const caseId = scenario.pickle.tags
@@ -116,5 +117,5 @@ module.exports = {
   getCases,
   updateRunDescription,
   closeRun,
-  setTestRailResults,
+  setTestRailResultsForKnowTestRun,
 };
