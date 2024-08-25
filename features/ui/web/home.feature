@@ -6,6 +6,7 @@ Feature: Home Page Navigation
     Background:
         Given I navigate to "home.url"
 
+    @C937
     Scenario Outline: User navigates to the home page
         And I wait for the "home.logo" to be visible
 # And I type "search.term" into the "home.searchField" field

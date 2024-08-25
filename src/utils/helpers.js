@@ -99,6 +99,12 @@ const getSelector = (string, del = '.') =>
 
 const getData = (string, del = '.') => string.split(del).reduce((acc, key) => acc[key], data);
 
+function extractBetweenMarkers(inputString, startMarker, endMarker) {
+  const regex = new RegExp(`${startMarker}(.*?)${endMarker}`, 's');
+  const match = inputString.match(regex);
+  return match ? match[1].trim() : null;
+}
+
 // Export Functions
 module.exports = {
   generateRandomString,
@@ -114,4 +120,5 @@ module.exports = {
   generateRandomPassword,
   getSelector,
   getData,
+  extractBetweenMarkers,
 };

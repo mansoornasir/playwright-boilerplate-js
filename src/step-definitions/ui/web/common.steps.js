@@ -250,7 +250,7 @@ When(
 // Example: Wait for an element to be visible
 When(
   'I wait for the {string} to be visible',
-  { timeout: parseInt(process.env.DEFAULT_TIMEOUT) },
+  { timeout: parseInt(process.env.ELEMENT_VISIBLE_TIMEOUT) },
   async function (selector) {
     await this.page.waitForSelector(getSelector(selector), {
       state: 'visible',
