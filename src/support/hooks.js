@@ -23,7 +23,7 @@ BeforeAll(async function () {
   browser = await setupBrowser(USE_BROWSERSTACK);
 });
 
-Before(async function (scenario) {
+Before(async function () {
   // Create a new TestRail test run if TestRail integration is enabled
   if (CONFIG.USE_TESTRAIL) {
     // // Collect case IDs from your features/scenarios
