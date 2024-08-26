@@ -1,35 +1,38 @@
-name: CI/CD for Cucumber HTML Reporter
+name: Test
+
+env:
+  CI: true
+  DEBUG: pw:api
 
 on:
   push:
-    branches:
-      - main  # Change to your default branch
 
 jobs:
-  build:
+  run:
+    strategy:
+      matrix:
+        node: ['18']
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: '16'  # Use your preferred Node.js version
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run Cucumber Tests
-        run: npm test  # Ensure this command generates the HTML report
-
-      - name: Generate HTML report
-        run: npm run html:report  # Ensure this command generates the HTML report
-
-      - name: Deploy to GitHub Pages
+          node-version: ${{ matrix.node }}
+      - name: Collect Workflow Telemetry
+        uses: runforesight/foresight-workflow-kit-action@v1
+        if: ${{ always() }}
+        with:
+          api_key: ${{secrets.GITHUB_TOKEN}}
+      - name: npm ci
+        run: npm ci --legacy-peer-deps
+      - name: install Playwright
+        run: npx playwright install --with-deps > /dev/null
+      - name: run features
+        run: npm run test
+      - name: Deploy HTML Report to GitHub Pages
         run: |
           npm install -g gh-pages
-          gh-pages -d path_to_html_report  # Replace with the correct path to your HTML report
+          gh-pages -d ./reports/cucumber_report.html
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
