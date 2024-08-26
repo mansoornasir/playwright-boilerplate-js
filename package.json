@@ -7,7 +7,7 @@
     "test": "rimraf allure-results && rimraf allure-report && cucumber-js",
     "allure:generate": "npx allure generate",
     "allure:open": "allure open ./allure-report",
-    "html:report": "node ./src/utils/cucumber_html_report_generator.js",
+    "html:report": "node ./src/support/reporters/cucumber_html_report_generator.js",
     "lint": "npx eslint .",
     "lint:fix": "npx eslint . --fix",
     "format": "prettier --write \"**/*.{ts,tsx,css,html,js}\" ",

@@ -8,14 +8,14 @@ const common = [
   '--require ./src/step-definitions/**/*.js',
   '--require ./src/support/hooks.js',
   './features/**/*.feature',
-  '--format json:./reports/cucumber_report.json'
 ];
 if (process.env.USE_ALLURE === "true") {
   common.push('--format @cucumber/pretty-formatter');
-  common.push('--format ./src/support/allure-reporter.js:./reports/allure-results');
+  common.push('--format ./src/support/reporters/allure-reporter.js:./reports/allure-results');
 } else {
+  common.push('--format json:./reports/cucumber_report.json')
   common.push('--format @cucumber/pretty-formatter');
-  common.push(`--format ${process.env.REPORT_FORMAT}`);
+  // common.push(`--format ${process.env.REPORT_FORMAT}`);
 }
 
 module.exports = {

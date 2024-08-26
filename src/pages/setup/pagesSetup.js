@@ -1,6 +1,6 @@
 const ObjectsProvider = require('./ObjectsProvider');
-const LoginPage = require('../pages/Login.page');
-const HomePage = require('../pages/Home.page');
+const LoginPage = require('../Login.page');
+const HomePage = require('../Home.page');
 
 async function setupTestContext(page) {
   const pageObjects = new ObjectsProvider(page);

@@ -1,5 +1,5 @@
 const { Before, After, BeforeAll, AfterAll, setDefaultTimeout } = require('@cucumber/cucumber');
-const { setupBrowser, handleBrowserStackLogic } = require('../utils/bsUtils');
+const { setupBrowser, handleBrowserStackLogic } = require('../utils/browserstack_utils/bsUtils');
 require('../step-definitions/ui/web/common.steps');
 const {
   setTestRailResultsForKnowTestRun,

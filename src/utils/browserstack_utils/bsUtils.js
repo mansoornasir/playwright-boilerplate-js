@@ -1,6 +1,6 @@
 const { chromium } = require('playwright');
-const { captureAndAttachScreenshot } = require('./screenshotUtils');
-const capabilities = require('../utils/browserstack-capabilities');
+const { captureAndAttachScreenshot } = require('../screenshotUtils');
+const capabilities = require('./browserstack-capabilities');
 
 const CONFIG = {
   HEADLESS: process.env.HEADLESS === 'true',
