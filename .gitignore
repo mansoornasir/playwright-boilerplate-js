@@ -65,7 +65,7 @@ typings/
 .env
 
 #reports
-reports/*.html
+reports/*.png
 allure-report
 allure-results
 reports/screenshots/*
