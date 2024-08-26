@@ -12,26 +12,27 @@
     "format": "prettier --write \"**/*.{ts,tsx,css,html,js}\" ",
     "only": "npx cucumber-js --tags @only",
     "smoke": "npx cucumber-js --tags @smoke",
-    "test:parallel": "cucumber-js --parallel=2"
+    "test:parallel": "cucumber-js --parallel=2",
+    "test:chromium": "BROWSER=chromium cucumber-js",
+    "test:firefox": "BROWSER=firefox cucumber-js",
+    "test:webkit": "BROWSER=webkit cucumber-js",
+    "test:parallel2": "npm-run-all --parallel test:chromium test:firefox test:webkit"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@cucumber/cucumber": "^7.3.2",
+    "@cucumber/cucumber": "^10.9.0",
     "@cucumber/pretty-formatter": "^1.0.1",
     "@faker-js/faker": "^8.4.1",
     "@playwright/test": "^1.46.1",
-    "@types/node": "^22.2.0",
     "allure-commandline": "^2.30.0",
     "allure-cucumberjs": "^3.0.0-beta.10",
     "allure-js-commons": "^3.0.0-beta.10",
     "allure-playwright": "^3.0.0-beta.9",
-    "cucumber-playwright": "^1.2.1",
-    "cucumber-pretty": "^6.0.1",
     "dotenv": "^16.4.5",
-    "eslint": "^8.57.0",
+    "eslint": "^9.9.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-prettier": "^5.2.1",
@@ -39,9 +40,7 @@
     "lint-staged": "^15.2.9",
     "prettier": "3.3.3",
     "prettier-eslint": "^16.3.0",
-    "rimraf": "^5.0.10"
-  },
-  "dependencies": {
+    "rimraf": "^5.0.10",
     "testrail-api-client": "^1.0.30"
   }
 }

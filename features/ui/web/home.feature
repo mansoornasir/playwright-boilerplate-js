@@ -6,9 +6,17 @@ Feature: Home Page Navigation
     Background:
         Given I navigate to "home.url"
 
-    @C937
+    @C925
     Scenario Outline: User navigates to the home page
         And I wait for the "home.logo" to be visible
+    @C926
+    Scenario Outline: User navigates to the home page
+        And I wait for the "home.loginBtn" to be visible
+    @C927
+    Scenario Outline: User navigates to the home page
+        And I wait for the "home.usernameField" to be visible
+
+
 # And I type "search.term" into the "home.searchField" field
 # And I press the enter key on element "home.searchField"
 # And I wait for 5 seconds

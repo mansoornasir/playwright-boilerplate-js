@@ -1,10 +1,5 @@
 const locators = {
-  home: {
-    url: process.env.BASE_URL,
-    logo: '.login_logo',
-    searchField: '#search-results',
-    signinUrl: 'https://sfcc.petfoodking.com/signin',
-  },
+  home: require('./pageLocators/home/home.loc'),
   search: {
     productImage: 'img.tile-image',
   },

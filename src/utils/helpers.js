@@ -105,6 +105,16 @@ function extractBetweenMarkers(inputString, startMarker, endMarker) {
   return match ? match[1].trim() : null;
 }
 
+async function getTagNumber(scenario) {
+  for (const tag of scenario.pickle.tags) {
+    if (tag.name.startsWith('@C')) {
+      const caseId = tag.name.substring(2); // Remove '@C' and get the ID
+      return parseInt(caseId); // This returns the ID from the function
+    }
+  }
+  return null; // Return null or another appropriate value if no tag is found
+}
+
 // Export Functions
 module.exports = {
   generateRandomString,
@@ -121,4 +131,5 @@ module.exports = {
   getSelector,
   getData,
   extractBetweenMarkers,
+  getTagNumber,
 };

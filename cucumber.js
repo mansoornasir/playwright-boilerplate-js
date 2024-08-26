@@ -5,14 +5,13 @@
 const dotenv = require('dotenv'); // Load environment variables from .env file
 dotenv.config();
 const path = require('path');
-const environment = process.env.NODE_ENV || 'development';
+const environment = process.env.NODE_ENV;
 dotenv.config({ path: path.resolve(process.cwd(), `.env.${environment}`) });
 
 const common = [
   '--require ./src/step-definitions/**/*.js',
   '--require ./src/support/hooks.js',
   './features/**/*.feature',
-  '--publish-quiet',
   '--format json:./reports/results.json'
 ];
 if (process.env.USE_ALLURE === "true") {
@@ -24,5 +23,5 @@ if (process.env.USE_ALLURE === "true") {
 
 module.exports = {
   default: common.join(' '),
-  // parallel: common.concat(['--parallel 2']).join(' '),  // Parallel execution with 4 threads
+  parallel: common.concat(['--parallel 6']).join(' '),  // Parallel execution with 4 threads
 };

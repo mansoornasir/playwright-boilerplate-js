@@ -9,18 +9,18 @@ const options = {
 
 const client = new client_options(options);
 
-const addRun = async (runName, runDescription, projectId, testSuiteId) => {
+const addRun = async (runName, runDescription, projectId, testSuiteId, caseIds = []) => {
   // const runName = 'Example Run Name';
   // const runDescription = 'Example Run Description';
   // const projectId = 20;
   // const testSuiteId = 22; // optional
   // const caseIds = [925, 926, 927]; // optional
   try {
-    const runId = await client.addRun(runName, runDescription, projectId, testSuiteId);
+    const runId = await client.addRun(runName, runDescription, projectId, testSuiteId, caseIds);
     // console.log(`Created run with id: ${runId}`);
     return runId;
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     throw error; // rethrow the error if you want to handle it elsewhere
   }
 };

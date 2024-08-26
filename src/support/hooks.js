@@ -6,9 +6,12 @@ const {
   addRun,
   addResultsForCases,
 } = require('../utils/testrailUtils');
+const { getTagNumber } = require('../utils/helpers');
+
 setDefaultTimeout(process.env.DEFAULT_TIMEOUT);
 
 const CONFIG = {
+  BROWSER: process.env.BROWSER,
   VIEWPORT_WIDTH: parseInt(process.env.VIEWPORT_WIDTH, 10),
   VIEWPORT_HEIGHT: parseInt(process.env.VIEWPORT_HEIGHT, 10),
   screenshotsDir: process.cwd() + '/reports/screenshots/',
@@ -17,32 +20,23 @@ const CONFIG = {
   TESTRAIL_SUITE_ID: parseInt(process.env.TESTRAIL_SUITE_ID),
   TESTRAIL_TESTRUN_ID: parseInt(process.env.TESTRAIL_TESTRUN_ID),
   TESTRAIL_UPLOAD_SCREENSHOT: process.env.TESTRAIL_UPLOAD_SCREENSHOT === 'true',
-  runId: null,
+  RUN_ID: null,
 };
 
 const USE_BROWSERSTACK = process.env.USE_BROWSERSTACK === 'true';
 let browser;
 let context;
-
+let caseIds = [];
+let testResults = [];
 BeforeAll(async function () {
   browser = await setupBrowser(USE_BROWSERSTACK);
   // if TESTRAIL_TESTRUN_ID is not defined, then run this
   // this means that TESTRAIL_TESTRUN_ID is not known and we are creating new runs based on some custom tags
-  if (!CONFIG.TESTRAIL_TESTRUN_ID && CONFIG.USE_TESTRAIL) {
-    CONFIG.runId = await addRun(
-      `Regression: ${new Date().toLocaleString()}`,
-      'General Regression',
-      CONFIG.TESTRAIL_PROJECT_ID,
-      CONFIG.TESTRAIL_SUITE_ID,
-    );
-  }
 });
 
 Before(async function () {
-  // Create a new TestRail test run if TestRail integration is enabled
-  if (CONFIG.USE_TESTRAIL && !CONFIG.TESTRAIL_TESTRUN_ID) {
-    console.log('RUN ID IS : ' + CONFIG.runId);
-  }
+  // if (CONFIG.USE_TESTRAIL && !CONFIG.TESTRAIL_TESTRUN_ID) {
+  // }
 
   context = await browser.newContext({
     viewport: {
@@ -58,16 +52,13 @@ After(async function (scenario) {
   if (CONFIG.USE_TESTRAIL && CONFIG.TESTRAIL_TESTRUN_ID) {
     await setTestRailResultsForKnowTestRun(this.page, scenario, CONFIG);
   } else if (CONFIG.USE_TESTRAIL && !CONFIG.TESTRAIL_TESTRUN_ID) {
-    if (scenario.result.status === 'PASSED')
-      scenario.pickle.tags.forEach(async (tag) => {
-        if (tag.name.startsWith('@C')) {
-          const caseId = parseInt(tag.name.slice(2), 10);
-          const reportTests = [
-            { case_id: caseId, status_id: 1, comment: 'Test passed successfully' },
-          ];
-          await addResultsForCases(CONFIG.runId, reportTests);
-        }
-      });
+    const statusId = scenario.result.status === 'PASSED' ? 1 : 5; // 1 for Passed, 5 for Failed
+    scenario.result.status === 'PASSED'
+      ? (comment = 'Test passed successfully')
+      : (comment = `Test failed at step : ${scenario.pickle.steps.map((step) => step.text + '\n')} \n\n ${scenario.result.message} `);
+    const caseId = await getTagNumber(scenario);
+    caseIds.push(caseId);
+    testResults.push({ case_id: caseId, status_id: statusId, comment: comment });
   }
 
   await handleBrowserStackLogic(
@@ -81,8 +72,20 @@ After(async function (scenario) {
 });
 
 AfterAll(async () => {
-  if (CONFIG.USE_TESTRAIL === 'true') {
-    closeRun();
+  if (CONFIG.USE_TESTRAIL) {
+    if (!CONFIG.TESTRAIL_TESTRUN_ID && CONFIG.USE_TESTRAIL) {
+      CONFIG.RUN_ID = await addRun(
+        `Regression: ${new Date().toLocaleString()}`,
+        'Regression',
+        CONFIG.TESTRAIL_PROJECT_ID,
+        CONFIG.TESTRAIL_SUITE_ID,
+        caseIds,
+      );
+    }
+    console.log('Test run created;' + CONFIG.RUN_ID);
+    testResults.forEach((result) => {
+      addResultsForCases(CONFIG.RUN_ID, [result]);
+    });
   }
   if (browser) {
     try {
