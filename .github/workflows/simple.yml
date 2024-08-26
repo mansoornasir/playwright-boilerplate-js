@@ -1,0 +1,35 @@
+name: CI/CD for Cucumber HTML Reporter
+
+on:
+  push:
+    branches:
+      - main  # Change to your default branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Use your preferred Node.js version
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Cucumber Tests
+        run: npm test  # Ensure this command generates the HTML report
+
+      - name: Generate HTML report
+        run: npm run html:report  # Ensure this command generates the HTML report
+
+      - name: Deploy to GitHub Pages
+        run: |
+          npm install -g gh-pages
+          gh-pages -d path_to_html_report  # Replace with the correct path to your HTML report
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
