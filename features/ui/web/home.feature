@@ -7,13 +7,13 @@ Feature: Home Page Navigation
         Given I navigate to "home.url"
 
     @C925
-    Scenario Outline: User navigates to the home page
+    Scenario Outline: User navigates to the home page one
         And I wait for the "home.logo" to be visible
     @C926
-    Scenario Outline: User navigates to the home page
+    Scenario Outline: User navigates to the home page two
         And I wait for the "home.loginBtn" to be visible
     @C927
-    Scenario Outline: User navigates to the home page
+    Scenario Outline: User navigates to the home page three
         And I wait for the "home.usernameField" to be visible
 
 
