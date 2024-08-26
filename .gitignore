@@ -65,7 +65,7 @@ typings/
 .env
 
 #reports
-# reports/*.html
+reports/*.html
 reports/*.json
 allure-report
 allure-results

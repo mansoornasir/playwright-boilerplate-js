@@ -1,7 +1,3 @@
-// TODO
-// I NEED TO REFACTOR THIS TO WORK WITH NOT common but with the commented section
-
-
 const dotenv = require('dotenv'); // Load environment variables from .env file
 dotenv.config();
 const path = require('path');
@@ -12,12 +8,13 @@ const common = [
   '--require ./src/step-definitions/**/*.js',
   '--require ./src/support/hooks.js',
   './features/**/*.feature',
-  '--format json:./reports/results.json'
+  '--format json:./reports/cucumber_report.json'
 ];
 if (process.env.USE_ALLURE === "true") {
   common.push('--format @cucumber/pretty-formatter');
   common.push('--format ./src/support/allure-reporter.js:./reports/allure-results');
 } else {
+  common.push('--format @cucumber/pretty-formatter');
   common.push(`--format ${process.env.REPORT_FORMAT}`);
 }
 
