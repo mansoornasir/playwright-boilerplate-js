@@ -1,5 +1,5 @@
 const locators = {
-  home: require('./pageLocators/home/home.loc'),
+  home: require('./pageLocators/home.loc'),
   search: {
     productImage: 'img.tile-image',
   },
@@ -13,6 +13,7 @@ const locators = {
     accountSettingsText: '.profile-header',
     accountSettingsIcon: '.profile-settings-img img',
   },
+  pets: require('./pageLocators/pets.loc'),
 };
 
 module.exports = locators;
