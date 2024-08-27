@@ -4,7 +4,8 @@ Given(
   'I am on the login page',
   { timeout: parseInt(process.env.DEFAULT_TIMEOUT) },
   async function () {
-    await this.pages.LoginPage.navigateToLoginPage(process.env.BASE_URL + '/signin');
+    await this.pages.LoginPage.navigateToLoginPage(process.env.BASE_URL + 'signin');
+    console.log('reached here');
   },
 );
 

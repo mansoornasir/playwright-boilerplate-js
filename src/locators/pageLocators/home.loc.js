@@ -1,6 +1,6 @@
 module.exports = {
   url: process.env.BASE_URL,
-  logo: '.login_logo',
+  logo: '.logo-home',
   searchField: '#search-results',
   signinUrl: 'https://sfcc.petfoodking.com/signin',
   loginBtn: '#login-button',

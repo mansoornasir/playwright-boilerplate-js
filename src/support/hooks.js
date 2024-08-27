@@ -6,6 +6,7 @@ const {
   addRun,
   addResultsForCases,
 } = require('../utils/testrailUtils');
+const { setupTestContext } = require('../utils/pagesSetup');
 const { getTagNumber } = require('../utils/helpers');
 
 setDefaultTimeout(process.env.DEFAULT_TIMEOUT);
@@ -46,6 +47,11 @@ Before(async function () {
     ignoreHTTPSErrors: true,
   });
   this.page = await context.newPage();
+  const { pageObjects } = await setupTestContext(this.page);
+  this.allPageObjects = pageObjects;
+
+  // Initialize all used Page Objects
+  this.pages = this.allPageObjects.initializeAll();
 });
 
 After(async function (scenario) {
