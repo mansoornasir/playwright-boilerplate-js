@@ -7,6 +7,9 @@ const {
   addResultsForCases,
 } = require('../utils/testrailUtils');
 const { getTagNumber } = require('../utils/helpers');
+const backstop = require('backstopjs');
+const fs = require('fs');
+const path = require('path');
 
 setDefaultTimeout(process.env.DEFAULT_TIMEOUT);
 
@@ -20,6 +23,7 @@ const CONFIG = {
   TESTRAIL_SUITE_ID: parseInt(process.env.TESTRAIL_SUITE_ID),
   TESTRAIL_TESTRUN_ID: parseInt(process.env.TESTRAIL_TESTRUN_ID),
   TESTRAIL_UPLOAD_SCREENSHOT: process.env.TESTRAIL_UPLOAD_SCREENSHOT === 'true',
+  USE_VISUAL_TESTING: process.env.USE_VISUAL_TESTING === 'true',
   RUN_ID: null,
 };
 
@@ -49,6 +53,33 @@ Before(async function () {
 });
 
 After(async function (scenario) {
+  if (CONFIG.USE_VISUAL_TESTING) {
+    console.log('using visual testing');
+    if (scenario.pickle.tags.includes('@visual')) {
+      console.log('scenario matched... ');
+      const scenarioConfig = {
+        label: scenario.pickle.name,
+        url: this.page.url(),
+        delay: 500,
+        selectors: ['document'],
+      };
+
+      const testResult = await backstop('test', {
+        config: {
+          scenarios: [scenarioConfig],
+        },
+      });
+
+      if (testResult.report !== 'pass') {
+        console.error('Visual regression test failed');
+        const screenshotPath = path.resolve(
+          `backstop_data/bitmaps_test/${scenario.pickle.name}-${Date.now()}.png`,
+        );
+        await this.page.screenshot({ path: screenshotPath });
+      }
+    }
+  }
+
   if (CONFIG.USE_TESTRAIL && CONFIG.TESTRAIL_TESTRUN_ID) {
     await setTestRailResultsForKnowTestRun(this.page, scenario, CONFIG);
   } else if (CONFIG.USE_TESTRAIL && !CONFIG.TESTRAIL_TESTRUN_ID) {

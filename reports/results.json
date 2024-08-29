@@ -1,0 +1,78 @@
+[
+  {
+    "description": "    As a user\n    I want to be able to navigate to the home page\n    So that I can access the main features of the website",
+    "elements": [
+      {
+        "description": "",
+        "id": "home-page-navigation;user-navigates-to-the-home-page",
+        "keyword": "Scenario Outline",
+        "line": 9,
+        "name": "User navigates to the home page",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 180277700
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "I login with valid http credentials",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:358"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1476047899
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 10,
+            "name": "I wait for the \"home.logo\" to be visible",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:251"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 18720383499,
+              "error_message": "page.waitForSelector: Target page, context or browser has been closed\nCall log:\n  \u001b[2m- waiting for locator('.logo-home') to be visible\u001b[22m\n\n    at AllureCucumberWorld.<anonymous> (C:\\Users\\LENOVO\\Desktop\\playwright-boilerplate-js\\src\\step-definitions\\ui\\web\\common.steps.js:255:21)"
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "failed",
+              "duration": 7064300,
+              "error_message": "page.screenshot: Target page, context or browser has been closed\n    at AllureCucumberWorld.<anonymous> (C:\\Users\\LENOVO\\Desktop\\playwright-boilerplate-js\\src\\support\\hooks.js:60:21)"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@sevrity:critical",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "home-page-navigation",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "Home Page Navigation",
+    "tags": [
+      {
+        "name": "@sevrity:critical",
+        "line": 1
+      }
+    ],
+    "uri": "features\\ui\\web\\home.feature"
+  }
+]

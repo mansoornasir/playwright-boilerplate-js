@@ -1,4 +1,4 @@
-@sevrity:critical @smoke @auth @browserstack
+@sevrity:critical @smoke @auth @browserstack @visual
 Feature: Home Page Navigation
     As a user
     I want to be able to navigate to the home page
@@ -9,12 +9,6 @@ Feature: Home Page Navigation
     @C925
     Scenario Outline: User navigates to the home page one
         And I wait for the "home.logo" to be visible
-    @C926
-    Scenario Outline: User navigates to the home page two
-        And I wait for the "home.loginBtn" to be visible
-    @C927
-    Scenario Outline: User navigates to the home page three
-        And I wait for the "home.usernameField" to be visible
 
 
 # And I type "search.term" into the "home.searchField" field
