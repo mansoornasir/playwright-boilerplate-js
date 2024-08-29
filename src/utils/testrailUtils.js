@@ -30,7 +30,8 @@ const addResultsForCases = async (runId, reportTests) => {
   client
     .addResultsForCases(runId, reportTests)
     .then(() => {
-      console.log('Test Status Updated on Test Rail');
+      // eslint-disable-next-line no-console
+      console.warn('Test Status Updated on Test Rail');
     })
     .catch((err) => {
       console.log(err);

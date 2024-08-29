@@ -1,47 +1,20 @@
 const { Before, After, BeforeAll, AfterAll, setDefaultTimeout } = require('@cucumber/cucumber');
 const { setupBrowser, handleBrowserStackLogic } = require('../utils/browserstack_utils/bsUtils');
-require('../step-definitions/ui/web/common.steps');
-const {
-  setTestRailResultsForKnowTestRun,
-  addRun,
-  addResultsForCases,
-} = require('../utils/testrailUtils');
-const { getTagNumber } = require('../utils/helpers');
-const backstop = require('backstopjs');
-const fs = require('fs');
-const path = require('path');
-
+const { CONFIG } = require('../utils/configUtils');
+const { runVisualTesting } = require('../utils/visualTestingUtils');
+const { handleTestRailResults, finalizeTestRailRun } = require('../utils/testrailUtilsRefactored');
 setDefaultTimeout(process.env.DEFAULT_TIMEOUT);
 
-const CONFIG = {
-  BROWSER: process.env.BROWSER,
-  VIEWPORT_WIDTH: parseInt(process.env.VIEWPORT_WIDTH, 10),
-  VIEWPORT_HEIGHT: parseInt(process.env.VIEWPORT_HEIGHT, 10),
-  screenshotsDir: process.cwd() + '/reports/screenshots/',
-  USE_TESTRAIL: process.env.USE_TESTRAIL === 'true',
-  TESTRAIL_PROJECT_ID: parseInt(process.env.TESTRAIL_PROJECT_ID),
-  TESTRAIL_SUITE_ID: parseInt(process.env.TESTRAIL_SUITE_ID),
-  TESTRAIL_TESTRUN_ID: parseInt(process.env.TESTRAIL_TESTRUN_ID),
-  TESTRAIL_UPLOAD_SCREENSHOT: process.env.TESTRAIL_UPLOAD_SCREENSHOT === 'true',
-  USE_VISUAL_TESTING: process.env.USE_VISUAL_TESTING === 'true',
-  RUN_ID: null,
-};
-
-const USE_BROWSERSTACK = process.env.USE_BROWSERSTACK === 'true';
 let browser;
 let context;
 let caseIds = [];
 let testResults = [];
+
 BeforeAll(async function () {
-  browser = await setupBrowser(USE_BROWSERSTACK);
-  // if TESTRAIL_TESTRUN_ID is not defined, then run this
-  // this means that TESTRAIL_TESTRUN_ID is not known and we are creating new runs based on some custom tags
+  browser = await setupBrowser(CONFIG.USE_BROWSERSTACK);
 });
 
 Before(async function () {
-  // if (CONFIG.USE_TESTRAIL && !CONFIG.TESTRAIL_TESTRUN_ID) {
-  // }
-
   context = await browser.newContext({
     viewport: {
       width: CONFIG.VIEWPORT_WIDTH,
@@ -54,70 +27,28 @@ Before(async function () {
 
 After(async function (scenario) {
   if (CONFIG.USE_VISUAL_TESTING) {
-    console.log('using visual testing');
-    if (scenario.pickle.tags.includes('@visual')) {
-      console.log('scenario matched... ');
-      const scenarioConfig = {
-        label: scenario.pickle.name,
-        url: this.page.url(),
-        delay: 500,
-        selectors: ['document'],
-      };
-
-      const testResult = await backstop('test', {
-        config: {
-          scenarios: [scenarioConfig],
-        },
-      });
-
-      if (testResult.report !== 'pass') {
-        console.error('Visual regression test failed');
-        const screenshotPath = path.resolve(
-          `backstop_data/bitmaps_test/${scenario.pickle.name}-${Date.now()}.png`,
-        );
-        await this.page.screenshot({ path: screenshotPath });
-      }
-    }
+    await runVisualTesting(this.page, scenario);
   }
-
-  if (CONFIG.USE_TESTRAIL && CONFIG.TESTRAIL_TESTRUN_ID) {
-    await setTestRailResultsForKnowTestRun(this.page, scenario, CONFIG);
-  } else if (CONFIG.USE_TESTRAIL && !CONFIG.TESTRAIL_TESTRUN_ID) {
-    const statusId = scenario.result.status === 'PASSED' ? 1 : 5; // 1 for Passed, 5 for Failed
-    scenario.result.status === 'PASSED'
-      ? (comment = 'Test passed successfully')
-      : (comment = `Test failed at step : ${scenario.pickle.steps.map((step) => step.text + '\n')} \n\n ${scenario.result.message} `);
-    const caseId = await getTagNumber(scenario);
-    caseIds.push(caseId);
-    testResults.push({ case_id: caseId, status_id: statusId, comment: comment });
+  if (CONFIG.USE_TESTRAIL) {
+    await handleTestRailResults(this.page, scenario, CONFIG, caseIds, testResults);
   }
-
-  await handleBrowserStackLogic(
-    scenario,
-    context,
-    this.page,
-    CONFIG.screenshotsDir,
-    USE_BROWSERSTACK,
-    this,
-  );
+  if (CONFIG.USE_BROWSERSTACK) {
+    await handleBrowserStackLogic(
+      scenario,
+      context,
+      this.page,
+      CONFIG.screenshotsDir,
+      CONFIG.USE_BROWSERSTACK,
+      this,
+    );
+  }
 });
 
 AfterAll(async () => {
   if (CONFIG.USE_TESTRAIL) {
-    if (!CONFIG.TESTRAIL_TESTRUN_ID && CONFIG.USE_TESTRAIL) {
-      CONFIG.RUN_ID = await addRun(
-        `Regression: ${new Date().toLocaleString()}`,
-        'Regression',
-        CONFIG.TESTRAIL_PROJECT_ID,
-        CONFIG.TESTRAIL_SUITE_ID,
-        caseIds,
-      );
-    }
-    console.log('Test run created;' + CONFIG.RUN_ID);
-    testResults.forEach((result) => {
-      addResultsForCases(CONFIG.RUN_ID, [result]);
-    });
+    await finalizeTestRailRun(CONFIG, caseIds, testResults);
   }
+
   if (browser) {
     try {
       await browser.close();

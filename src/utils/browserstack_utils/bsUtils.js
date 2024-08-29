@@ -81,8 +81,8 @@ async function handleBrowserStackLogic(
 async function setBrowserStackSessionStatus(page, scenario, status, reason, tags) {
   try {
     await page.evaluate(
-      // eslint-disable-next-line prettier/prettier, no-unused-vars
-      (_) => { },
+      // eslint-disable-next-line no-unused-vars
+      (_) => {},
       `browserstack_executor: {
       "action": "setSessionStatus",
       "arguments": {

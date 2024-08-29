@@ -5,11 +5,6 @@
       "label": "phone",
       "width": 320,
       "height": 480
-    },
-    {
-      "label": "tablet",
-      "width": 1024,
-      "height": 768
     }
   ],
   "onBeforeScript": "playwright/onBefore.js",
@@ -18,7 +13,7 @@
     {
       "label": "BackstopJS Homepage",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
-      "url": "https://garris.github.io/BackstopJS/",
+      "url": "https://www.saucedemo.com/v1/",
       "referenceUrl": "",
       "readyEvent": "",
       "readySelector": "",

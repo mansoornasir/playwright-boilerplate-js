@@ -6,10 +6,9 @@ Feature: Home Page Navigation
     Background:
         Given I navigate to "home.url"
 
-    @C925
+    @C929
     Scenario Outline: User navigates to the home page one
         And I wait for the "home.logo" to be visible
-
 
 # And I type "search.term" into the "home.searchField" field
 # And I press the enter key on element "home.searchField"
