@@ -366,3 +366,25 @@ Given(
     await this.page.goto(process.env.BASE_URL);
   },
 );
+
+// Visual testing
+
+When('I visually compare {string} to {string}', async function (url, referenceUrl) {
+  url = getData(url);
+  referenceUrl = getData(referenceUrl);
+  const fs = require('fs');
+  const { execSync } = require('child_process');
+  backstopConfigPath = process.cwd() + '\\backstop.json';
+  // rewrite backstop.json file
+  const config = JSON.parse(fs.readFileSync(backstopConfigPath, 'utf8'));
+
+  config.scenarios.forEach((scenario) => {
+    scenario.url = url; // Update the URL with the dynamic value
+    scenario.referenceUrl = referenceUrl;
+    scenario.label = referenceUrl;
+  });
+
+  fs.writeFileSync(backstopConfigPath, JSON.stringify(config, null, 2));
+  execSync('npx backstop reference > nul 2>&1', { stdio: 'inherit' });
+  execSync('npx backstop test > nul 2>&1', { stdio: 'inherit' });
+});

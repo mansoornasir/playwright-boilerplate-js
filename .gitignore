@@ -72,6 +72,12 @@ reports/screenshots/*
 traces/
 reports/*.json
 
+#backstop_data
+backstop_data/bitmaps_test
+backstop_data/html_report
+backstop_data/bitmaps_reference
+
+
 #build
 build
 dist/

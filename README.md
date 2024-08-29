@@ -246,3 +246,10 @@ https://mansoornasir.github.io/playwright-boilerplate-js/
 - **`I login with valid http credentials`**
 
   - Login user with valid credentials defined in .env file
+
+## Visual Testing
+
+### When
+
+  - **`I visually compare {string} to {string}`**
+

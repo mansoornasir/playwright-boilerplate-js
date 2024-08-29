@@ -5,16 +5,21 @@
       "label": "phone",
       "width": 320,
       "height": 480
+    },
+    {
+      "label": "windows 11",
+      "width": 1440,
+      "height": 786
     }
   ],
   "onBeforeScript": "playwright/onBefore.js",
   "onReadyScript": "playwright/onReady.js",
   "scenarios": [
     {
-      "label": "BackstopJS Homepage",
+      "label": "https://www.example.com",
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
-      "url": "https://www.saucedemo.com/v1/",
-      "referenceUrl": "",
+      "url": "https://www.example.com",
+      "referenceUrl": "https://www.example.com",
       "readyEvent": "",
       "readySelector": "",
       "delay": 0,
@@ -23,10 +28,10 @@
       "hoverSelector": "",
       "clickSelector": "",
       "postInteractionWait": 0,
-      "selectors": [],
+      "selectors": ["body"],
       "selectorExpansion": true,
       "expect": 0,
-      "misMatchThreshold" : 0.1,
+      "misMatchThreshold": 0.1,
       "requireSameDimensions": true
     }
   ],
@@ -37,10 +42,14 @@
     "html_report": "backstop_data/html_report",
     "ci_report": "backstop_data/ci_report"
   },
-  "report": ["browser"],
+  "report": [
+    "ci"
+  ],
   "engine": "playwright",
   "engineOptions": {
-    "args": ["--no-sandbox"]
+    "args": [
+      "--no-sandbox"
+    ]
   },
   "asyncCaptureLimit": 5,
   "asyncCompareLimit": 50,

@@ -9,6 +9,7 @@ Feature: Home Page Navigation
     @C929
     Scenario Outline: User navigates to the home page one
         And I wait for the "home.logo" to be visible
+        And I visually compare "visual.homeUrl" to "visual.homeReferenceUrl"
 
 # And I type "search.term" into the "home.searchField" field
 # And I press the enter key on element "home.searchField"

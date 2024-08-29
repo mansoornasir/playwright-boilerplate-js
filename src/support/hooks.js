@@ -1,7 +1,6 @@
 const { Before, After, BeforeAll, AfterAll, setDefaultTimeout } = require('@cucumber/cucumber');
 const { setupBrowser, handleBrowserStackLogic } = require('../utils/browserstackUtils/bsUtils');
 const { CONFIG } = require('../utils/configUtils');
-const { runVisualTesting } = require('../utils/backstopConfig/visualTestingUtils');
 const {
   handleTestRailResults,
   finalizeTestRailRun,
@@ -17,7 +16,7 @@ BeforeAll(async function () {
   browser = await setupBrowser(CONFIG.USE_BROWSERSTACK);
 });
 
-Before(async function () {
+Before(async function (scenario) {
   context = await browser.newContext({
     viewport: {
       width: CONFIG.VIEWPORT_WIDTH,
@@ -26,12 +25,16 @@ Before(async function () {
     ignoreHTTPSErrors: true,
   });
   this.page = await context.newPage();
+  if (
+    CONFIG.USE_VISUAL_TESTING &&
+    scenario.pickle.tags.find((tag) => tag.name.startsWith('@visual'))
+  ) {
+    console.warn('Visual Testing in progress...');
+    // await runVisualTesting(this.page, scenario);
+  }
 });
 
 After(async function (scenario) {
-  if (CONFIG.USE_VISUAL_TESTING) {
-    await runVisualTesting(this.page, scenario);
-  }
   if (CONFIG.USE_TESTRAIL) {
     await handleTestRailResults(this.page, scenario, CONFIG, caseIds, testResults);
   }

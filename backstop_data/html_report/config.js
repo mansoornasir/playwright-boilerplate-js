@@ -3,30 +3,51 @@ report({
   "tests": [
     {
       "pair": {
-        "reference": "..\\bitmaps_reference\\backstop_default_BackstopJS_Homepage_0_document_0_phone.png",
-        "test": "..\\bitmaps_test\\20240828-220953\\backstop_default_BackstopJS_Homepage_0_document_0_phone.png",
+        "reference": "..\\bitmaps_reference\\backstop_default_https__wwwexamplecom_0_document_0_phone.png",
+        "test": "..\\bitmaps_test\\20240830-013643\\backstop_default_https__wwwexamplecom_0_document_0_phone.png",
         "selector": "document",
-        "fileName": "backstop_default_BackstopJS_Homepage_0_document_0_phone.png",
-        "label": "BackstopJS Homepage",
+        "fileName": "backstop_default_https__wwwexamplecom_0_document_0_phone.png",
+        "label": "https://www.example.com",
         "requireSameDimensions": true,
         "misMatchThreshold": 0.1,
-        "url": "https://www.saucedemo.com/v1/",
-        "referenceUrl": "",
+        "url": "https://www.example.com",
+        "referenceUrl": "https://www.example.com",
         "expect": 0,
         "viewportLabel": "phone",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -104
+            "height": 0
           },
-          "rawMisMatchPercentage": 64.62476765799256,
-          "misMatchPercentage": "64.62",
-          "analysisTime": 32
-        },
-        "diffImage": "..\\bitmaps_test\\20240828-220953\\failed_diff_backstop_default_BackstopJS_Homepage_0_document_0_phone.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
+    },
+    {
+      "pair": {
+        "reference": "..\\bitmaps_reference\\backstop_default_https__wwwexamplecom_0_document_1_windows_11.png",
+        "test": "..\\bitmaps_test\\20240830-013643\\backstop_default_https__wwwexamplecom_0_document_1_windows_11.png",
+        "selector": "document",
+        "fileName": "backstop_default_https__wwwexamplecom_0_document_1_windows_11.png",
+        "label": "https://www.example.com",
+        "requireSameDimensions": true,
+        "misMatchThreshold": 0.1,
+        "url": "https://www.example.com",
+        "referenceUrl": "https://www.example.com",
+        "expect": 0,
+        "viewportLabel": "windows 11",
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "misMatchPercentage": "0.00"
+        }
+      },
+      "status": "pass"
     }
   ],
   "id": "backstop_default"

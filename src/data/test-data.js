@@ -1,6 +1,10 @@
 const Faker = require('./Faker');
 
 const data = {
+  visual: {
+    homeUrl: 'https://www.example.com',
+    homeReferenceUrl: 'https://www.example.com',
+  },
   search: {
     term: 'chew',
   },
