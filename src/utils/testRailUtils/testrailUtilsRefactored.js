@@ -1,7 +1,7 @@
 // src/utils/testrailUtilsRefactored.js
 
 const { setTestRailResultsForKnowTestRun, addRun, addResultsForCases } = require('./testrailUtils');
-const { getTagNumber } = require('./helpers');
+const { getTagNumber } = require('../helpers');
 
 async function handleTestRailResults(page, scenario, config, caseIds, testResults) {
   if (config.USE_TESTRAIL && config.TESTRAIL_TESTRUN_ID) {

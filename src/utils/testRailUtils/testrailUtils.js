@@ -1,5 +1,5 @@
 const client_options = require('testrail-api-client').default;
-const { saveScreenShot } = require('../utils/screenshotUtils');
+const { saveScreenShot } = require('../screenshotUtils');
 
 const options = {
   domain: process.env.TESTRAIL_HOST,

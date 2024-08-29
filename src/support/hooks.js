@@ -1,8 +1,11 @@
 const { Before, After, BeforeAll, AfterAll, setDefaultTimeout } = require('@cucumber/cucumber');
-const { setupBrowser, handleBrowserStackLogic } = require('../utils/browserstack_utils/bsUtils');
+const { setupBrowser, handleBrowserStackLogic } = require('../utils/browserstackUtils/bsUtils');
 const { CONFIG } = require('../utils/configUtils');
-const { runVisualTesting } = require('../utils/visualTestingUtils');
-const { handleTestRailResults, finalizeTestRailRun } = require('../utils/testrailUtilsRefactored');
+const { runVisualTesting } = require('../utils/backstopConfig/visualTestingUtils');
+const {
+  handleTestRailResults,
+  finalizeTestRailRun,
+} = require('../utils/testRailUtils/testrailUtilsRefactored');
 setDefaultTimeout(process.env.DEFAULT_TIMEOUT);
 
 let browser;
