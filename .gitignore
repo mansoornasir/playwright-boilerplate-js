@@ -70,6 +70,7 @@ allure-report
 allure-results
 reports/screenshots/*
 traces/
+reports/*.json
 
 #build
 build
