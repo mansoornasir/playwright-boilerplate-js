@@ -4,7 +4,12 @@ const { getSelector, getData } = require('../../../utils/helpers');
 
 // Navigation
 
-// Example: Navigating to a URL
+/**
+ * Navigates to a specific URL.
+ * @function
+ * @name Given: User navigates to {string}
+ * @param {string} url - The URL to navigate to.
+ */
 Given(
   'I navigate to {string}',
   { timeout: parseInt(process.env.DEFAULT_TIMEOUT) },
@@ -30,7 +35,12 @@ When('I refresh the page', async function () {
 
 // Element Interactions
 
-// Example: Clicking an element
+/**
+ * Clicks on a specific element.
+ * @function
+ * @name When: User clicks on the {string}
+ * @param {string} element - The element to click on (e.g., button).
+ */
 When('I click on the {string}', async function (selector) {
   await this.page.click(getSelector(selector));
 });
@@ -63,7 +73,13 @@ Then('The {string} radio button should be selected', async function (selector) {
   expect(isChecked).toBeTruthy();
 });
 
-// Example: Filling a form field
+/**
+ * Fills an input field with text.
+ * @function
+ * @name When: I type {string} into the {string} field
+ * @param {string} field - The field identifier (e.g., name, email).
+ * @param {string} value - The value to input.
+ */
 When('I type {string} into the {string} field', async function (value, selector) {
   await this.page.fill(getSelector(selector), getData(value));
 });
@@ -97,7 +113,13 @@ When('I scroll to the {string}', async function (selector) {
 
 // Assertions
 
-// Example: Verifying an element's visibility
+/**
+ * Asserts that an element is visible on the page.
+ * @function
+ * @name Then: I should see the {string} element
+ * @param {string} element - The element to check visibility for.
+ * @throws Will throw an error if the element is not visible.
+ */
 Then('I should see the {string} element', async function (selector) {
   expect(await this.page.isVisible(getSelector(selector))).toBeTruthy();
 });
@@ -157,7 +179,13 @@ Then('The element {string} should contain the text {string}', async function (se
   expect(elementText).toContain(text);
 });
 
-// Example: Check if a URL contains specific text
+/**
+ * Asserts that the URL contains a specific path.
+ * @function
+ * @name Then: The URL should contain {string}
+ * @param {string} path - The path to check in the URL.
+ * @throws Will throw an error if the URL does not contain the specified path.
+ */
 Then('The URL should contain {string}', async function (expectedUrlPart) {
   const currentUrl = this.page.url();
   expect(currentUrl).toContain(expectedUrlPart);

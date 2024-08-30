@@ -1,0 +1,13 @@
+{
+  "source": {
+    "include": [
+      "./src/step-definitions/ui/web/common.steps.js",
+      "./src/pages/Login.page.js"
+    ],
+    "includePattern": ".+\\.js(doc|x)?$",
+    "excludePattern": "(node_modules|docs)"
+  },
+  "opts": {
+    "destination": "./docs/"
+  }
+}
