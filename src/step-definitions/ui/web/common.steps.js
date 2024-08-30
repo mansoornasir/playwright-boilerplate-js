@@ -1,7 +1,6 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { expect } = require('@playwright/test');
 const { getSelector, getData } = require('../../../utils/helpers');
-const { runAccessibilityChecks } = require('../../../utils/accessibilityUtils');
 
 // Navigation
 
