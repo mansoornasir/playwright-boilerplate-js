@@ -14,7 +14,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 153871299
+              "duration": 178177099
             }
           },
           {
@@ -23,11 +23,11 @@
             "line": 7,
             "name": "I navigate to \"home.url\"",
             "match": {
-              "location": "src\\step-definitions\\ui\\web\\common.steps.js:8"
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:9"
             },
             "result": {
               "status": "passed",
-              "duration": 1494836499
+              "duration": 1391139000
             }
           },
           {
@@ -36,32 +36,20 @@
             "line": 11,
             "name": "I wait for the \"home.logo\" to be visible",
             "match": {
-              "location": "src\\step-definitions\\ui\\web\\common.steps.js:251"
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:252"
             },
             "result": {
               "status": "passed",
-              "duration": 50672899
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And ",
-            "line": 12,
-            "name": "I visually compare \"visual.homeUrl\" to \"visual.homeReferenceUrl\"",
-            "match": {
-              "location": "src\\step-definitions\\ui\\web\\common.steps.js:372"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 9535299500
+              "duration": 45789899
             }
           },
           {
             "keyword": "After",
             "hidden": true,
             "result": {
-              "status": "passed",
-              "duration": 279199
+              "status": "failed",
+              "duration": 691764900,
+              "error_message": "Error: Accessibility violations detected. See the report for details: E:\\allivet\\playwright-boilerplate - v3\\playwright-boilerplate\\reports\\a11y-reports\\User_navigates_to_the_home_page_one.html\n    at runAccessibilityTests (E:\\allivet\\playwright-boilerplate - v3\\playwright-boilerplate\\src\\utils\\accessibilityUtils.js:29:11)\n    at async World.<anonymous> (E:\\allivet\\playwright-boilerplate - v3\\playwright-boilerplate\\src\\support\\hooks.js:52:5)"
             }
           }
         ],
@@ -84,6 +72,10 @@
           },
           {
             "name": "@visual",
+            "line": 1
+          },
+          {
+            "name": "@accessibility",
             "line": 1
           },
           {
@@ -117,6 +109,10 @@
       },
       {
         "name": "@visual",
+        "line": 1
+      },
+      {
+        "name": "@accessibility",
         "line": 1
       }
     ],

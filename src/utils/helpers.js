@@ -115,6 +115,10 @@ async function getTagNumber(scenario) {
   return null; // Return null or another appropriate value if no tag is found
 }
 
+function scenarioHasTag(scenario, tags) {
+  return tags.some((tag) => scenario.pickle.tags.find((scenarioTag) => scenarioTag.name === tag));
+}
+
 // Export Functions
 module.exports = {
   generateRandomString,
@@ -131,5 +135,6 @@ module.exports = {
   getSelector,
   getData,
   extractBetweenMarkers,
+  scenarioHasTag,
   getTagNumber,
 };

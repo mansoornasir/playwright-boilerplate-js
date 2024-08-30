@@ -12,6 +12,7 @@ const CONFIG = {
   TESTRAIL_UPLOAD_SCREENSHOT: process.env.TESTRAIL_UPLOAD_SCREENSHOT === 'true',
   USE_VISUAL_TESTING: process.env.USE_VISUAL_TESTING === 'true',
   USE_BROWSERSTACK: process.env.USE_BROWSERSTACK === 'true',
+  USE_ACCESSIBILITY_TESTING: process.env.USE_ACCESSIBILITY_TESTING === 'true',
   RUN_ID: null,
 };
 

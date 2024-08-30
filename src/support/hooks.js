@@ -5,6 +5,9 @@ const {
   handleTestRailResults,
   finalizeTestRailRun,
 } = require('../utils/testRailUtils/testrailUtilsRefactored');
+const { runAccessibilityTests } = require('../utils/accessibilityUtils'); // Import the new utility function
+const { scenarioHasTag } = require('../utils/helpers');
+
 setDefaultTimeout(process.env.DEFAULT_TIMEOUT);
 
 let browser;
@@ -25,10 +28,7 @@ Before(async function (scenario) {
     ignoreHTTPSErrors: true,
   });
   this.page = await context.newPage();
-  if (
-    CONFIG.USE_VISUAL_TESTING &&
-    scenario.pickle.tags.find((tag) => tag.name.startsWith('@visual'))
-  ) {
+  if (CONFIG.USE_VISUAL_TESTING && scenarioHasTag(scenario, ['@visual'])) {
     console.warn('Visual Testing in progress...');
     // await runVisualTesting(this.page, scenario);
   }
@@ -47,6 +47,9 @@ After(async function (scenario) {
       CONFIG.USE_BROWSERSTACK,
       this,
     );
+  }
+  if (CONFIG.USE_ACCESSIBILITY_TESTING && scenarioHasTag(scenario, ['@accessibility'])) {
+    await runAccessibilityTests(this.page, scenario);
   }
 });
 
