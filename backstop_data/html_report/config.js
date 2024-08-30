@@ -3,10 +3,10 @@ report({
   "tests": [
     {
       "pair": {
-        "reference": "..\\bitmaps_reference\\backstop_default_https__wwwexamplecom_0_document_0_phone.png",
-        "test": "..\\bitmaps_test\\20240830-013643\\backstop_default_https__wwwexamplecom_0_document_0_phone.png",
-        "selector": "document",
-        "fileName": "backstop_default_https__wwwexamplecom_0_document_0_phone.png",
+        "reference": "..\\bitmaps_reference\\backstop_default_https__wwwexamplecom_0_body_0_phone.png",
+        "test": "..\\bitmaps_test\\20240830-194122\\backstop_default_https__wwwexamplecom_0_body_0_phone.png",
+        "selector": "body",
+        "fileName": "backstop_default_https__wwwexamplecom_0_body_0_phone.png",
         "label": "https://www.example.com",
         "requireSameDimensions": true,
         "misMatchThreshold": 0.1,
@@ -27,10 +27,10 @@ report({
     },
     {
       "pair": {
-        "reference": "..\\bitmaps_reference\\backstop_default_https__wwwexamplecom_0_document_1_windows_11.png",
-        "test": "..\\bitmaps_test\\20240830-013643\\backstop_default_https__wwwexamplecom_0_document_1_windows_11.png",
-        "selector": "document",
-        "fileName": "backstop_default_https__wwwexamplecom_0_document_1_windows_11.png",
+        "reference": "..\\bitmaps_reference\\backstop_default_https__wwwexamplecom_0_body_1_windows_11.png",
+        "test": "..\\bitmaps_test\\20240830-194122\\backstop_default_https__wwwexamplecom_0_body_1_windows_11.png",
+        "selector": "body",
+        "fileName": "backstop_default_https__wwwexamplecom_0_body_1_windows_11.png",
         "label": "https://www.example.com",
         "requireSameDimensions": true,
         "misMatchThreshold": 0.1,

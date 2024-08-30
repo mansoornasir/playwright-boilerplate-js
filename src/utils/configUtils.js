@@ -13,6 +13,7 @@ const CONFIG = {
   USE_VISUAL_TESTING: process.env.USE_VISUAL_TESTING === 'true',
   USE_BROWSERSTACK: process.env.USE_BROWSERSTACK === 'true',
   USE_ACCESSIBILITY_TESTING: process.env.USE_ACCESSIBILITY_TESTING === 'true',
+  USE_EXCEL_REPORTS: process.env.USE_EXCEL_REPORTS === 'true',
   RUN_ID: null,
 };
 

@@ -1,12 +1,15 @@
 const { Before, After, BeforeAll, AfterAll, setDefaultTimeout } = require('@cucumber/cucumber');
-const { setupBrowser, handleBrowserStackLogic } = require('../utils/browserstackUtils/bsUtils');
+const { setupBrowser } = require('../utils/browserstackUtils/bsUtils');
 const { CONFIG } = require('../utils/configUtils');
+const { getCaseIdAndStatus, shouldRunVisualTesting } = require('../utils/scenarioUtils');
 const {
-  handleTestRailResults,
-  finalizeTestRailRun,
-} = require('../utils/testRailUtils/testrailUtilsRefactored');
-const { runAccessibilityTests } = require('../utils/accessibilityUtils'); // Import the new utility function
-const { scenarioHasTag } = require('../utils/helpers');
+  initializeWorkbook,
+  updateTestResultInWorksheet,
+  saveWorkbook,
+} = require('../utils/excelUtils');
+const { finalizeTestRailRun } = require('../utils/testRailUtils/testrailUtilsRefactored');
+const { createBrowserContext, closeBrowser } = require('../utils/browserUtils');
+const { handleAdditionalTestProcesses } = require('../utils/testProcessUtils');
 
 setDefaultTimeout(process.env.DEFAULT_TIMEOUT);
 
@@ -14,55 +17,45 @@ let browser;
 let context;
 let caseIds = [];
 let testResults = [];
+let workbook, worksheet, filePath;
 
 BeforeAll(async function () {
   browser = await setupBrowser(CONFIG.USE_BROWSERSTACK);
+
+  if (CONFIG.USE_EXCEL_REPORTS) {
+    console.warn('Using Excel reporting...');
+    ({ workbook, worksheet, filePath } = await initializeWorkbook());
+  }
 });
 
 Before(async function (scenario) {
-  context = await browser.newContext({
-    viewport: {
-      width: CONFIG.VIEWPORT_WIDTH,
-      height: CONFIG.VIEWPORT_HEIGHT,
-    },
-    ignoreHTTPSErrors: true,
-  });
+  context = await createBrowserContext(browser);
   this.page = await context.newPage();
-  if (CONFIG.USE_VISUAL_TESTING && scenarioHasTag(scenario, ['@visual'])) {
+
+  if (shouldRunVisualTesting(scenario)) {
     console.warn('Visual Testing in progress...');
     // await runVisualTesting(this.page, scenario);
   }
 });
 
 After(async function (scenario) {
-  if (CONFIG.USE_TESTRAIL) {
-    await handleTestRailResults(this.page, scenario, CONFIG, caseIds, testResults);
+  const { caseId, status } = getCaseIdAndStatus(scenario);
+
+  if (CONFIG.USE_EXCEL_REPORTS && caseId) {
+    updateTestResultInWorksheet(worksheet, caseId, status);
   }
-  if (CONFIG.USE_BROWSERSTACK) {
-    await handleBrowserStackLogic(
-      scenario,
-      context,
-      this.page,
-      CONFIG.screenshotsDir,
-      CONFIG.USE_BROWSERSTACK,
-      this,
-    );
-  }
-  if (CONFIG.USE_ACCESSIBILITY_TESTING && scenarioHasTag(scenario, ['@accessibility'])) {
-    await runAccessibilityTests(this.page, scenario);
-  }
+
+  await handleAdditionalTestProcesses(this.page, scenario, context, CONFIG, caseIds, testResults);
 });
 
 AfterAll(async () => {
+  if (CONFIG.USE_EXCEL_REPORTS) {
+    await saveWorkbook(workbook, filePath);
+  }
+
   if (CONFIG.USE_TESTRAIL) {
     await finalizeTestRailRun(CONFIG, caseIds, testResults);
   }
 
-  if (browser) {
-    try {
-      await browser.close();
-    } catch (error) {
-      console.error('Failed to close the browser:', error);
-    }
-  }
+  await closeBrowser(browser);
 });

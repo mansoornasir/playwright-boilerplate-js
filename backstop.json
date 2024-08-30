@@ -28,7 +28,9 @@
       "hoverSelector": "",
       "clickSelector": "",
       "postInteractionWait": 0,
-      "selectors": ["body"],
+      "selectors": [
+        "body"
+      ],
       "selectorExpansion": true,
       "expect": 0,
       "misMatchThreshold": 0.1,
