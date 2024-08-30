@@ -15,8 +15,21 @@ function shouldRunVisualTesting(scenario) {
   const { CONFIG } = require('./configUtils');
   return CONFIG.USE_VISUAL_TESTING && scenarioHasTag(scenario, ['@visual']);
 }
+function validateScenarioTag(scenario) {
+  const requiredTagPattern = /^@C\d+$/;
+  const scenarioTags = scenario.pickle.tags.map((tag) => tag.name);
+
+  const hasValidTag = scenarioTags.some((tag) => requiredTagPattern.test(tag));
+
+  if (!hasValidTag) {
+    throw new Error(
+      `Scenario "${scenario.pickle.name}" is missing a required tag that starts with @C followed by a number. Example: @C929`,
+    );
+  }
+}
 
 module.exports = {
+  validateScenarioTag,
   scenarioHasTag,
   getCaseIdAndStatus,
   shouldRunVisualTesting,

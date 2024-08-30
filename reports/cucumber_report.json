@@ -13,8 +13,9 @@
             "keyword": "Before",
             "hidden": true,
             "result": {
-              "status": "passed",
-              "duration": 1271650599
+              "status": "failed",
+              "duration": 883299,
+              "error_message": "Error: Scenario \"User navigates to the home page one\" is missing a required tag that starts with @C followed by a number. Example: @C929\n    at validateScenarioTag (E:\\allivet\\playwright-boilerplate - v3\\playwright-boilerplate\\src\\utils\\scenarioUtils.js:25:11)\n    at World.<anonymous> (E:\\allivet\\playwright-boilerplate - v3\\playwright-boilerplate\\src\\support\\hooks.js:36:3)"
             }
           },
           {
@@ -26,8 +27,8 @@
               "location": "src\\step-definitions\\ui\\web\\common.steps.js:8"
             },
             "result": {
-              "status": "passed",
-              "duration": 5694996400
+              "status": "skipped",
+              "duration": 0
             }
           },
           {
@@ -39,8 +40,8 @@
               "location": "src\\step-definitions\\ui\\web\\common.steps.js:251"
             },
             "result": {
-              "status": "passed",
-              "duration": 490859000
+              "status": "skipped",
+              "duration": 0
             }
           },
           {
@@ -48,7 +49,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1819684999
+              "duration": 536900
             }
           }
         ],
@@ -76,10 +77,6 @@
           {
             "name": "@accessibility",
             "line": 1
-          },
-          {
-            "name": "@C929",
-            "line": 9
           }
         ],
         "type": "scenario"

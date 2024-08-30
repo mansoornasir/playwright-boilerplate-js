@@ -6,7 +6,6 @@ Feature: Home Page Navigation
     Background:
         Given I navigate to "home.url"
 
-    # ENFORCE THIS TAG CASE ID
     @C929
     Scenario Outline: User navigates to the home page one
         And I wait for the "home.logo" to be visible

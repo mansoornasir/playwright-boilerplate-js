@@ -1,7 +1,11 @@
 const { Before, After, BeforeAll, AfterAll, setDefaultTimeout } = require('@cucumber/cucumber');
 const { setupBrowser } = require('../utils/browserstackUtils/bsUtils');
 const { CONFIG } = require('../utils/configUtils');
-const { getCaseIdAndStatus, shouldRunVisualTesting } = require('../utils/scenarioUtils');
+const {
+  validateScenarioTag,
+  getCaseIdAndStatus,
+  shouldRunVisualTesting,
+} = require('../utils/scenarioUtils');
 const {
   initializeWorkbook,
   updateTestResultInWorksheet,
@@ -29,6 +33,7 @@ BeforeAll(async function () {
 });
 
 Before(async function (scenario) {
+  validateScenarioTag(scenario);
   context = await createBrowserContext(browser);
   this.page = await context.newPage();
 
