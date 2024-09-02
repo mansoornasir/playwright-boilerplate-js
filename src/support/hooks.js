@@ -14,6 +14,7 @@ const {
 const { finalizeTestRailRun } = require('../utils/testRailUtils/testrailUtilsRefactored');
 const { createBrowserContext, closeBrowser } = require('../utils/browserUtils');
 const { handleAdditionalTestProcesses } = require('../utils/testProcessUtils');
+const { setupTestContext } = require('../pages/setup/pagesSetup');
 
 setDefaultTimeout(process.env.DEFAULT_TIMEOUT);
 
@@ -36,6 +37,10 @@ Before(async function (scenario) {
   validateScenarioTag(scenario);
   context = await createBrowserContext(browser);
   this.page = await context.newPage();
+
+  const { pageObjects } = await setupTestContext(this.page);
+  this.allPageObjects = pageObjects;
+  this.pages = this.allPageObjects.initializeAll();
 
   if (shouldRunVisualTesting(scenario)) {
     console.warn('Visual Testing in progress...');
