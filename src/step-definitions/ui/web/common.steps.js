@@ -10,13 +10,9 @@ const { getSelector, getData } = require('../../../utils/helpers');
  * @name Given: User navigates to {string}
  * @param {string} url - The URL to navigate to.
  */
-Given(
-  'I navigate to {string}',
-  { timeout: parseInt(process.env.DEFAULT_TIMEOUT) },
-  async function (selector) {
-    await this.page.goto(getSelector(selector));
-  },
-);
+Given('I navigate to {string}', async function (selector) {
+  await this.page.goto(getSelector(selector));
+});
 
 // Example: Navigate back
 When('I navigate back', async function () {
@@ -381,19 +377,6 @@ When('I switch to the iframe {string}', async function (selector) {
 When('I switch back to the main content', async function () {
   this.page = this.page.mainFrame();
 });
-
-// Auth utility
-Given(
-  'I login with valid http credentials',
-  { timeout: parseInt(process.env.DEFAULT_TIMEOUT) },
-  async function () {
-    await this.page.context().setHTTPCredentials({
-      username: process.env.HTTP_USERNAME,
-      password: process.env.HTTP_PASSWORD,
-    });
-    await this.page.goto(process.env.BASE_URL);
-  },
-);
 
 // Visual testing
 

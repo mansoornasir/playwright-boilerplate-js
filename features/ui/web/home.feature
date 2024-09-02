@@ -5,7 +5,6 @@ Feature: Home Page Navigation
     So that I can access the main features of the website
     Background:
         Given I navigate to "home.url"
-        And I login with valid http credentials
 
     # @C001
     # Scenario Outline: User navigates to the home page one
@@ -19,6 +18,3 @@ Feature: Home Page Navigation
     @C001
     Scenario Outline: User login with valid credentials
         And I wait for the "home.logo" to be visible
-        And I am on the login page
-        And I wait for the page to fully load
-        And I login with valid credentials

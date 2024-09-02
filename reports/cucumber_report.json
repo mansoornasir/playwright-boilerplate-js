@@ -1,0 +1,120 @@
+[
+  {
+    "description": "    As a user\n    I want to be able to navigate to the home page\n    So that I can access the main features of the website",
+    "elements": [
+      {
+        "description": "",
+        "id": "home-page-navigation;user-login-with-valid-credentials",
+        "keyword": "Scenario Outline",
+        "line": 19,
+        "name": "User login with valid credentials",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 304180499
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "I navigate to \"home.url\"",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11013917100
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 20,
+            "name": "I wait for the \"home.logo\" to be visible",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:275"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1325657099
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 381199
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@sevrity:critical",
+            "line": 1
+          },
+          {
+            "name": "@smoke",
+            "line": 1
+          },
+          {
+            "name": "@auth",
+            "line": 1
+          },
+          {
+            "name": "@browserstack",
+            "line": 1
+          },
+          {
+            "name": "@visual",
+            "line": 1
+          },
+          {
+            "name": "@accessibility",
+            "line": 1
+          },
+          {
+            "name": "@C001",
+            "line": 18
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "home-page-navigation",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "Home Page Navigation",
+    "tags": [
+      {
+        "name": "@sevrity:critical",
+        "line": 1
+      },
+      {
+        "name": "@smoke",
+        "line": 1
+      },
+      {
+        "name": "@auth",
+        "line": 1
+      },
+      {
+        "name": "@browserstack",
+        "line": 1
+      },
+      {
+        "name": "@visual",
+        "line": 1
+      },
+      {
+        "name": "@accessibility",
+        "line": 1
+      }
+    ],
+    "uri": "features\\ui\\web\\home.feature"
+  }
+]

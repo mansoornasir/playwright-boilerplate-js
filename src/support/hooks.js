@@ -36,6 +36,12 @@ BeforeAll(async function () {
 Before(async function (scenario) {
   validateScenarioTag(scenario);
   context = await createBrowserContext(browser);
+  // Set up authentication
+  await context.setHTTPCredentials({
+    username: process.env.HTTP_USERNAME,
+    password: process.env.HTTP_PASSWORD,
+  });
+
   this.page = await context.newPage();
 
   const { pageObjects } = await setupTestContext(this.page);
