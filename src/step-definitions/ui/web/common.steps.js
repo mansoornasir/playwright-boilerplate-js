@@ -166,6 +166,7 @@ Then('I should not see the text {string} on the page', async function (text) {
 
 // Example: Asserting page title
 Then('The page title should be {string}', async function (title) {
+  title = getData(title);
   expect(await this.page.title()).toBe(title);
 });
 

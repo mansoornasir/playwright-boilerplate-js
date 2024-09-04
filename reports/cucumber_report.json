@@ -1,20 +1,20 @@
 [
   {
-    "description": "    As a user\n    I want to be able to navigate to the home page\n    So that I can access the main features of the website",
+    "description": "  As a user\n  I want to be able to navigate to the home page\n  So that I can access the main features of the website",
     "elements": [
       {
         "description": "",
-        "id": "home-page-navigation;user-login-with-valid-credentials",
+        "id": "cart-page;user-add-product-to-the-cart",
         "keyword": "Scenario Outline",
-        "line": 19,
-        "name": "User login with valid credentials",
+        "line": 10,
+        "name": "User add product to the cart",
         "steps": [
           {
             "keyword": "Before",
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 304180499
+              "duration": 411233900
             }
           },
           {
@@ -27,20 +27,137 @@
             },
             "result": {
               "status": "passed",
-              "duration": 11013917100
+              "duration": 12471149399
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 20,
+            "line": 11,
             "name": "I wait for the \"home.logo\" to be visible",
             "match": {
-              "location": "src\\step-definitions\\ui\\web\\common.steps.js:275"
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:276"
             },
             "result": {
               "status": "passed",
-              "duration": 1325657099
+              "duration": 375502099
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 12,
+            "name": "I type 'search.product' into the 'header.searchField' field",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:79"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 55863600
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 13,
+            "name": "I press the enter key on element 'header.searchField'",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:200"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3936013999
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 14,
+            "name": "I wait for the page to fully load",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:222"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3855659400
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 15,
+            "name": "I click on the 'plp.shopNowBtn'",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:40"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3593200199
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 16,
+            "name": "I wait for the page to fully load",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:222"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2839602500
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 17,
+            "name": "I select '4.4-9.9 lbs 45 mg Yellow' from the 'pdp.weightAndColor' dropdown",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:96"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1043307600
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 18,
+            "name": "I click on the 'pdp.addToCartBtn'",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:40"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1418978100
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 19,
+            "name": "I wait for 8 seconds",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:231"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 8017850299
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 20,
+            "name": "The count of elements 'cart.addedProducts' should be more than 0",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:240"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 451598299
             }
           },
           {
@@ -48,7 +165,128 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 381199
+              "duration": 336199
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@sevrity:critical",
+            "line": 1
+          },
+          {
+            "name": "@smoke",
+            "line": 1
+          },
+          {
+            "name": "@auth",
+            "line": 1
+          },
+          {
+            "name": "@browserstack",
+            "line": 1
+          },
+          {
+            "name": "@visual",
+            "line": 1
+          },
+          {
+            "name": "@accessibility",
+            "line": 1
+          },
+          {
+            "name": "@C003",
+            "line": 9
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "cart-page;user-navigates-to-the-cart-page",
+        "keyword": "Scenario Outline",
+        "line": 23,
+        "name": "User navigates to the cart page",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 438887399
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "I navigate to \"home.url\"",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 9320311500
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 24,
+            "name": "I wait for the \"home.logo\" to be visible",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:276"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1981172099
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 25,
+            "name": "I wait for the \"header.cartIcon\" to be visible",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:276"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 422684200
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 26,
+            "name": "I click on the 'header.cartIcon'",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:40"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3443298699
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 27,
+            "name": "I wait for the 'cart.cartPageHeaderText' to be visible",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:276"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2826428600
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 107400
             }
           }
         ],
@@ -79,16 +317,160 @@
           },
           {
             "name": "@C001",
-            "line": 18
+            "line": 22
           }
         ],
         "type": "scenario"
       }
     ],
-    "id": "home-page-navigation",
+    "id": "cart-page",
     "line": 2,
     "keyword": "Feature",
-    "name": "Home Page Navigation",
+    "name": "Cart Page",
+    "tags": [
+      {
+        "name": "@sevrity:critical",
+        "line": 1
+      },
+      {
+        "name": "@smoke",
+        "line": 1
+      },
+      {
+        "name": "@auth",
+        "line": 1
+      },
+      {
+        "name": "@browserstack",
+        "line": 1
+      },
+      {
+        "name": "@visual",
+        "line": 1
+      },
+      {
+        "name": "@accessibility",
+        "line": 1
+      }
+    ],
+    "uri": "features\\ui\\web\\cart.feature"
+  },
+  {
+    "description": "    As a user\n    I want to be able to navigate to the home page\n    So that I can access the main features of the website",
+    "elements": [
+      {
+        "description": "",
+        "id": "home-page;user-search-for-any-product",
+        "keyword": "Scenario Outline",
+        "line": 12,
+        "name": "User search for any product",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 530084100
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "I navigate to \"home.url\"",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 10427607199
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 13,
+            "name": "I wait for the \"home.logo\" to be visible",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:276"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 473678299
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 14,
+            "name": "I type 'search.term' into the 'header.searchField' field",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:79"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 62942500
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 15,
+            "name": "The count of elements 'plp.productTitleImage' should be more than 0",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:240"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 25549699
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 121699
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@sevrity:critical",
+            "line": 1
+          },
+          {
+            "name": "@smoke",
+            "line": 1
+          },
+          {
+            "name": "@auth",
+            "line": 1
+          },
+          {
+            "name": "@browserstack",
+            "line": 1
+          },
+          {
+            "name": "@visual",
+            "line": 1
+          },
+          {
+            "name": "@accessibility",
+            "line": 1
+          },
+          {
+            "name": "@C002",
+            "line": 11
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "home-page",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "Home Page",
     "tags": [
       {
         "name": "@sevrity:critical",
@@ -116,5 +498,534 @@
       }
     ],
     "uri": "features\\ui\\web\\home.feature"
+  },
+  {
+    "description": "  As a user\n  I want to be able to navigate to the home page\n  So that I can access the main features of the website",
+    "elements": [
+      {
+        "description": "",
+        "id": "signin-page;user-login-with-valid-credentials",
+        "keyword": "Scenario Outline",
+        "line": 10,
+        "name": "User login with valid credentials",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 611384700
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "I navigate to \"home.url\"",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 9673595399
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 11,
+            "name": "I wait for the \"home.logo\" to be visible",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:276"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 667543899
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 12,
+            "name": "I navigate to 'signin.signinUrl'",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4477274799
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 13,
+            "name": "I login with valid 'hhussain@allivet.com' and valid 'Admin@123'",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\login.steps.js:3"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 613215199
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 14,
+            "name": "I wait for 15 seconds",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:231"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 15001919200
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 15,
+            "name": "The page title should be 'dashboard.pageTitle'",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:168"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 44806700
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 108000
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@sevrity:critical",
+            "line": 1
+          },
+          {
+            "name": "@smoke",
+            "line": 1
+          },
+          {
+            "name": "@auth",
+            "line": 1
+          },
+          {
+            "name": "@browserstack",
+            "line": 1
+          },
+          {
+            "name": "@visual",
+            "line": 1
+          },
+          {
+            "name": "@accessibility",
+            "line": 1
+          },
+          {
+            "name": "@C004",
+            "line": 9
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "signin-page;user-logout-from-the-site",
+        "keyword": "Scenario Outline",
+        "line": 18,
+        "name": "User logout from the site",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 534703900
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "I navigate to \"home.url\"",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11719043900
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 19,
+            "name": "I wait for the \"home.logo\" to be visible",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:276"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 591644599
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 20,
+            "name": "I navigate to 'signin.signinUrl'",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6232433699
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 21,
+            "name": "I login with valid 'hhussain@allivet.com' and valid 'Admin@123'",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\login.steps.js:3"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1373724499
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 22,
+            "name": "I wait for 15 seconds",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:231"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 15012877500
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 23,
+            "name": "I logout from the site",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\home.steps.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2471974400
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 24,
+            "name": "I wait for 10 seconds",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:231"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 10001104999
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 25,
+            "name": "The element 'header.myAccountMenue' should contain the text 'Sign In'",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:174"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 60773200
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 121000
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@sevrity:critical",
+            "line": 1
+          },
+          {
+            "name": "@smoke",
+            "line": 1
+          },
+          {
+            "name": "@auth",
+            "line": 1
+          },
+          {
+            "name": "@browserstack",
+            "line": 1
+          },
+          {
+            "name": "@visual",
+            "line": 1
+          },
+          {
+            "name": "@accessibility",
+            "line": 1
+          },
+          {
+            "name": "@C005",
+            "line": 17
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "signin-page;user-create-an-account",
+        "keyword": "Scenario Outline",
+        "line": 28,
+        "name": "User create an account",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 448156400
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "I navigate to \"home.url\"",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 10357798499
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 29,
+            "name": "I wait for the \"home.logo\" to be visible",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:276"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 596594400
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 30,
+            "name": "I navigate to 'signin.signinUrl'",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4215652399
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 31,
+            "name": "I type 'customerRegForm.firstName' into the 'signin.firstName' field",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:79"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 561673500
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 32,
+            "name": "I type 'customerRegForm.lastName' into the 'signin.lastName' field",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:79"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 181023600
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 33,
+            "name": "I type 'customerRegForm.email' into the 'signin.regEmail' field",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:79"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 377529800
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 34,
+            "name": "I type 'customerRegForm.password' into the 'signin.regPassword' field",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:79"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 264543599
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 35,
+            "name": "I type 'customerRegForm.password' into the 'signin.confirmPassword' field",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:79"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 174257399
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 36,
+            "name": "I click on the 'signin.regButton'",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:40"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 228677700
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 37,
+            "name": "I wait for 10 seconds",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:231"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 10011076700
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 38,
+            "name": "The page title should be 'dashboard.pageTitle'",
+            "match": {
+              "location": "src\\step-definitions\\ui\\web\\common.steps.js:168"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 34869799
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 76700
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@sevrity:critical",
+            "line": 1
+          },
+          {
+            "name": "@smoke",
+            "line": 1
+          },
+          {
+            "name": "@auth",
+            "line": 1
+          },
+          {
+            "name": "@browserstack",
+            "line": 1
+          },
+          {
+            "name": "@visual",
+            "line": 1
+          },
+          {
+            "name": "@accessibility",
+            "line": 1
+          },
+          {
+            "name": "@C006",
+            "line": 27
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "signin-page",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "Signin Page",
+    "tags": [
+      {
+        "name": "@sevrity:critical",
+        "line": 1
+      },
+      {
+        "name": "@smoke",
+        "line": 1
+      },
+      {
+        "name": "@auth",
+        "line": 1
+      },
+      {
+        "name": "@browserstack",
+        "line": 1
+      },
+      {
+        "name": "@visual",
+        "line": 1
+      },
+      {
+        "name": "@accessibility",
+        "line": 1
+      }
+    ],
+    "uri": "features\\ui\\web\\signin.feature"
   }
 ]

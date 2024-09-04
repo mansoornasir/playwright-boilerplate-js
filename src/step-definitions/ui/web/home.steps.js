@@ -7,3 +7,11 @@ Given('I am on the home page', async function () {
 Then('I should see the welcome message', async function () {
   await this.pages.HomePage.verifyWelcomeMessage();
 });
+
+Then('I logout from the site', async function () {
+  await this.pages.HomePage.logout();
+});
+
+Then('I search for the product name {string}', async function (productName) {
+  await this.pages.HomePage.searchForProduct(productName);
+});

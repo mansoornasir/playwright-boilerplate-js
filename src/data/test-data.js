@@ -6,7 +6,8 @@ const data = {
     homeReferenceUrl: 'https://www.example.com',
   },
   search: {
-    term: 'chew',
+    term: 'apoquel',
+    product: 'bravecto',
   },
   cust: {
     email: process.env.CUST_EMAIL,
@@ -15,6 +16,13 @@ const data = {
   customerRegForm: {
     name: Faker.generateName(),
     email: Faker.generateEmail(),
+    firstName: 'Hamid',
+    lastName: 'Hussain',
+    password: 'Admin@123',
+  },
+
+  dashboard: {
+    pageTitle: 'My account',
   },
 };
 
